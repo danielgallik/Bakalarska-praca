@@ -1,0 +1,6 @@
+D:\Dropbox\C#\Bakalarska praca\Simulator Console\bin\Debug\Simulator Console.exe.config
+D:\Dropbox\C#\Bakalarska praca\Simulator Console\bin\Debug\Simulator Console.exe
+D:\Dropbox\C#\Bakalarska praca\Simulator Console\bin\Debug\Simulator Console.pdb
+D:\Dropbox\C#\Bakalarska praca\Simulator Console\obj\Debug\Simulator Console.exe
+D:\Dropbox\C#\Bakalarska praca\Simulator Console\obj\Debug\Simulator Console.pdb
+D:\Dropbox\C#\Bakalarska praca\Simulator Console\obj\Debug\Simulator Console.csprojResolveAssemblyReference.cache
