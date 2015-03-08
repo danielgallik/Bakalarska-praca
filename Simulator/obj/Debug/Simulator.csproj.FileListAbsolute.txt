@@ -1,0 +1,8 @@
+D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\Simulator.exe.config
+D:\Dropbox\C#\Bakalarska praca\Simulator\obj\Debug\Simulator.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\Simulator.exe
+D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\Simulator.pdb
+D:\Dropbox\C#\Bakalarska praca\Simulator\obj\Debug\Simulator.exe
+D:\Dropbox\C#\Bakalarska praca\Simulator\obj\Debug\Simulator.pdb
+D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\PumpContract.dll
+D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\PumpContract.pdb
