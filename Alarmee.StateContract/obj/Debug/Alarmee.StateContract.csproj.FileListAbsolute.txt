@@ -1,0 +1,4 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.StateContract\bin\Debug\Alarmee.StateContract.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.StateContract\bin\Debug\Alarmee.StateContract.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.StateContract\obj\Debug\Alarmee.StateContract.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.StateContract\obj\Debug\Alarmee.StateContract.pdb
