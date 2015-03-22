@@ -1,8 +1,16 @@
+D:\Download\Bakalarska-praca-master\Simulator\bin\Debug\Simulator.exe.config
+D:\Download\Bakalarska-praca-master\Simulator\bin\Debug\Simulator.exe
+D:\Download\Bakalarska-praca-master\Simulator\bin\Debug\Simulator.pdb
+D:\Download\Bakalarska-praca-master\Simulator\bin\Debug\PumpContract.dll
+D:\Download\Bakalarska-praca-master\Simulator\bin\Debug\PumpContract.pdb
+D:\Download\Bakalarska-praca-master\Simulator\obj\Debug\Simulator.csprojResolveAssemblyReference.cache
+D:\Download\Bakalarska-praca-master\Simulator\obj\Debug\Simulator.exe
+D:\Download\Bakalarska-praca-master\Simulator\obj\Debug\Simulator.pdb
 D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\Simulator.exe.config
+D:\Dropbox\C#\Bakalarska praca\Simulator\obj\Debug\Simulator.exe
+D:\Dropbox\C#\Bakalarska praca\Simulator\obj\Debug\Simulator.pdb
 D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\Simulator.exe
 D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\Simulator.pdb
 D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\PumpContract.dll
 D:\Dropbox\C#\Bakalarska praca\Simulator\bin\Debug\PumpContract.pdb
 D:\Dropbox\C#\Bakalarska praca\Simulator\obj\Debug\Simulator.csprojResolveAssemblyReference.cache
-D:\Dropbox\C#\Bakalarska praca\Simulator\obj\Debug\Simulator.exe
-D:\Dropbox\C#\Bakalarska praca\Simulator\obj\Debug\Simulator.pdb

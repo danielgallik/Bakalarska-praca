@@ -7,29 +7,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator", "Simulator\Simu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpContract", "PumpContract\PumpContract.csproj", "{1B8F7114-18A6-4F98-852C-DD35064F5A45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.WcfService", "Alarmee.WcfService\Alarmee.WcfService.csproj", "{E5697DC4-CA7C-45E7-9331-022A8D74433D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.StateContract", "Alarmee.StateContract\Alarmee.StateContract.csproj", "{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.Web", "Alarmee.Web\Alarmee.Web.csproj", "{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.WardManager", "Alarmee.WardManager\Alarmee.WardManager.csproj", "{CD38FFB8-DDEB-4ACD-95F1-A857F4338181}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.WardManager.Contracts", "Alarmee.WardManager.Contracts\Alarmee.WardManager.Contracts.csproj", "{EA4B66E7-77AD-4E71-8B92-7BAFE0B58F2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.ConsoleServer", "Alarmee.ConsoleServer\Alarmee.ConsoleServer.csproj", "{5B87D89F-4982-413E-8948-93EB6EEC318F}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://gallikdaniel.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Simulator\\Simulator.csproj
-		SccProjectName1 = Simulator
-		SccLocalPath1 = Simulator
-		SccProjectUniqueName2 = PumpContract\\PumpContract.csproj
-		SccProjectName2 = PumpContract
-		SccLocalPath2 = PumpContract
-		SccProjectUniqueName3 = Alarmee.WcfService\\Alarmee.WcfService.csproj
-		SccProjectName3 = Alarmee.WcfService
-		SccLocalPath3 = Alarmee.WcfService
-		SccProjectUniqueName4 = Alarmee.StateContract\\Alarmee.StateContract.csproj
-		SccProjectName4 = Alarmee.StateContract
-		SccLocalPath4 = Alarmee.StateContract
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -43,14 +31,26 @@ Global
 		{1B8F7114-18A6-4F98-852C-DD35064F5A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B8F7114-18A6-4F98-852C-DD35064F5A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B8F7114-18A6-4F98-852C-DD35064F5A45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5697DC4-CA7C-45E7-9331-022A8D74433D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5697DC4-CA7C-45E7-9331-022A8D74433D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5697DC4-CA7C-45E7-9331-022A8D74433D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5697DC4-CA7C-45E7-9331-022A8D74433D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD38FFB8-DDEB-4ACD-95F1-A857F4338181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD38FFB8-DDEB-4ACD-95F1-A857F4338181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD38FFB8-DDEB-4ACD-95F1-A857F4338181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD38FFB8-DDEB-4ACD-95F1-A857F4338181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA4B66E7-77AD-4E71-8B92-7BAFE0B58F2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4B66E7-77AD-4E71-8B92-7BAFE0B58F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4B66E7-77AD-4E71-8B92-7BAFE0B58F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4B66E7-77AD-4E71-8B92-7BAFE0B58F2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B87D89F-4982-413E-8948-93EB6EEC318F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B87D89F-4982-413E-8948-93EB6EEC318F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B87D89F-4982-413E-8948-93EB6EEC318F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B87D89F-4982-413E-8948-93EB6EEC318F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,8 @@
+D:\Download\Bakalarska-praca-master\Alarmee.WardManager.Contracts\bin\Debug\Alarmee.WardManager.Contracts.dll
+D:\Download\Bakalarska-praca-master\Alarmee.WardManager.Contracts\bin\Debug\Alarmee.WardManager.Contracts.pdb
+D:\Download\Bakalarska-praca-master\Alarmee.WardManager.Contracts\obj\Debug\Alarmee.WardManager.Contracts.dll
+D:\Download\Bakalarska-praca-master\Alarmee.WardManager.Contracts\obj\Debug\Alarmee.WardManager.Contracts.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\bin\Debug\Alarmee.WardManager.Contracts.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\bin\Debug\Alarmee.WardManager.Contracts.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\obj\Debug\Alarmee.WardManager.Contracts.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\obj\Debug\Alarmee.WardManager.Contracts.pdb

@@ -1,0 +1,24 @@
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\Alarmee.ConsoleServer.exe.config
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\Alarmee.ConsoleServer.exe
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\Alarmee.ConsoleServer.pdb
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardManager.Contracts.dll
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardManager.dll
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\PumpContract.dll
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardManager.Contracts.pdb
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardManager.pdb
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\bin\Debug\PumpContract.pdb
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\obj\Debug\Alarmee.ConsoleServer.csprojResolveAssemblyReference.cache
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\obj\Debug\Alarmee.ConsoleServer.exe
+D:\Download\Bakalarska-praca-master\Alarmee.ConsoleServer\obj\Debug\Alarmee.ConsoleServer.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.ConsoleServer.exe.config
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\obj\Debug\Alarmee.ConsoleServer.exe
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\obj\Debug\Alarmee.ConsoleServer.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.ConsoleServer.exe
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.ConsoleServer.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardManager.Contracts.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardManager.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\PumpContract.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardManager.Contracts.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardManager.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\PumpContract.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\obj\Debug\Alarmee.ConsoleServer.csprojResolveAssemblyReference.cache

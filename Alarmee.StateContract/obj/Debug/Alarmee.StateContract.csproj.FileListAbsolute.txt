@@ -1,4 +1,4 @@
-D:\Dropbox\C#\Bakalarska praca\Alarmee.StateContract\bin\Debug\Alarmee.StateContract.dll
-D:\Dropbox\C#\Bakalarska praca\Alarmee.StateContract\bin\Debug\Alarmee.StateContract.pdb
-D:\Dropbox\C#\Bakalarska praca\Alarmee.StateContract\obj\Debug\Alarmee.StateContract.dll
-D:\Dropbox\C#\Bakalarska praca\Alarmee.StateContract\obj\Debug\Alarmee.StateContract.pdb
+D:\Download\Bakalarska-praca-master\Alarmee.StateContract\bin\Debug\Alarmee.StateContract.dll
+D:\Download\Bakalarska-praca-master\Alarmee.StateContract\bin\Debug\Alarmee.StateContract.pdb
+D:\Download\Bakalarska-praca-master\Alarmee.StateContract\obj\Debug\Alarmee.StateContract.dll
+D:\Download\Bakalarska-praca-master\Alarmee.StateContract\obj\Debug\Alarmee.StateContract.pdb
