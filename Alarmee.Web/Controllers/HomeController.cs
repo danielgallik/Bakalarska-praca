@@ -12,19 +12,29 @@ namespace Alarmee.Web.Controllers
 {
 	public class HomeController : Controller
 	{
-		public ActionResult Index()
-		{
-			var client = new WardManagerClient();
+        private TestPlanModel GetModel()
+        {
+            var client = new WardManagerClient();
             var wardState = client.GetWardState();
-			client.Close();
+            client.Close();
 
-			StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             wardState.RemainingTimes.ForEach(x => sb.AppendLine(string.Format("Progres: {0}, Remaining time: {1}, Medicament: {2}", x.Progress, x.RemainingTime, x.Medicament)));
 
-            var model = new TestPlanModel(wardState);
+            return new TestPlanModel(wardState);
+        }
 
-            return View(model);
+		public ActionResult Index()
+		{
+
+            return View(GetModel());
 		}
+
+        [HttpGet]
+        public ActionResult Update()
+        {
+            return PartialView("TestPlanPartialView", GetModel());
+        }
 
 		public ActionResult About()
 		{

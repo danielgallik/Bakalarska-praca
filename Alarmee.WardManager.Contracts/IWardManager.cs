@@ -4,8 +4,8 @@ namespace Alarmee.WardManager.Contracts
 {
 	[ServiceContract]
 	public interface IWardManager
-	{
-		[OperationContract]
-		WardStateInfo GetWardState();
+    {
+        [OperationContract]
+        WardStateInfo GetWardState();
 	}
 }
