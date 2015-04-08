@@ -1,4 +1,5 @@
 ﻿using Alarmee.WardManager.Contracts;
+using Alarmee.WardPlan.Contract;
 using PumpContract;
 
 namespace Alarmee.WardManager
@@ -15,18 +16,14 @@ namespace Alarmee.WardManager
 			var pumps = pumpDataAccessClient.GetAllPumps();
 			pumpDataAccessClient.Close();
 
-			// transform the data
-			var remainingTimesEngine = new RemainingTimesEngine();
-			var wardEngine = new WardEngine();
+            var client = new PlanDataAccessClient();
+            var plan = client.getPlan(0);
+            client.Close();
 
-			var wardState = new WardStateInfo
-			{
-				RemainingTimes = remainingTimesEngine.GetRemainingTimes(pumps),
-                Rooms = wardEngine.GetRooms(pumps),
-                Beds = wardEngine.GetBeds(pumps),
-                Pumps = wardEngine.GetPumps(pumps),
-                Alerts = wardEngine.GetAlerts(pumps)
-			};
+			// transform the data
+            var remainingTimesEngine = new RemainingTimesEngine();
+
+            var wardState = remainingTimesEngine.getWardStateInfo(plan, pumps);
 
 			return wardState;
 		}

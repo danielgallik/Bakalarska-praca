@@ -35,6 +35,7 @@ namespace Simulator
 
                     var adminClient = new AdminPumpDataAccessClient();
 					adminClient.AddPump(tokens[1]);
+                    adminClient.ConnectToIpAddress(tokens[1], "192.168.1.1");
 					adminClient.Close();
                 }
                 else if (commandLine.StartsWith("l") || commandLine.Equals("list"))         // list pumps
@@ -46,7 +47,7 @@ namespace Simulator
                     Console.WriteLine("Available pumps:");
                     for (int i = 0; i < allPumps.Count; i++)
                     {
-                        string pumpInfo = i + " " + allPumps[i].SerialNumber + " " + allPumps[i].CurrentState + " " + allPumps[i].Medicament + " " + allPumps[i].TotalTime + " " + allPumps[i].RemainingTime;
+                        string pumpInfo = string.Format("{0} {1} {2} {3} {4}", i, allPumps[i].SerialNumber, allPumps[i].IpAddress, allPumps[i].CurrentState, allPumps[i].Medicament, allPumps[i].RemainingTime);
                         if (allPumps[i].SerialNumber == activePump)
                             pumpInfo += " active";
                         Console.WriteLine(pumpInfo);
@@ -130,6 +131,21 @@ namespace Simulator
                         Console.WriteLine("Cannot acknowledge alert.");
                     adminClient.Close();
                 }
+                else if (commandLine.StartsWith("connect") && activePump != "")                  // connect to other bed
+                {
+                    string[] tokens = commandLine.Split(' ');
+
+                    if (tokens.Length != 2)
+                    {
+                        Console.WriteLine("Invalid command syntax. Ip address expected.");
+                        writeHelp();
+                        continue;
+                    }
+
+                    var adminClient = new AdminPumpDataAccessClient();
+                    adminClient.ConnectToIpAddress(activePump, tokens[1]);
+                    adminClient.Close();
+                }
                 else if ((commandLine.StartsWith("i") || commandLine.Equals("info")) && activePump != "")   // get info of selected pump
                 {
                     var adminClient = new AdminPumpDataAccessClient();
@@ -137,7 +153,7 @@ namespace Simulator
                     adminClient.Close();
 
                     if (pump != null)
-                        Console.WriteLine(pump.SerialNumber + " " + pump.CurrentState + " " + pump.Medicament + " " + pump.TotalTime + " " + pump.RemainingTime);
+                        Console.WriteLine(string.Format("{0} {1} {2} {3} {4}", pump.SerialNumber, pump.IpAddress, pump.CurrentState, pump.Medicament, pump.RemainingTime));
                     else
                         Console.WriteLine("Pump not found.");
                 }
@@ -153,12 +169,8 @@ namespace Simulator
 			}
 
 			serviceHost.Close();
-			/*Console.WriteLine("Service stopped.");
-            Pump pump = new Pump("51351032");
-            pump.TurnOn();
-            pump.SetInfusionParams(500, 15, "Morfium");
-            pump.StartInfusion();
-            Console.ReadLine();*/
+			Console.WriteLine("Service stopped.");
+            Console.ReadLine();
         }
 
         private static void writeHelp()
@@ -175,6 +187,7 @@ namespace Simulator
                 Console.WriteLine("   start");
                 Console.WriteLine("   stop");
                 Console.WriteLine("   accept");
+                Console.WriteLine("   connect");
                 Console.WriteLine("   info");
             }
             Console.WriteLine("   exit");

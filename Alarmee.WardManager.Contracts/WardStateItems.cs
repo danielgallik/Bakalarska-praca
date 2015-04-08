@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Alarmee.WardManager.Contracts
 {
@@ -6,26 +7,42 @@ namespace Alarmee.WardManager.Contracts
     public class Room
     {
         [DataMember]
-        public int Id { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
-        public string Label { get; set; }
+        public Point NamePosition { get; set; }
 
         [DataMember]
         public string State { get; set; }
+
+        [DataMember]
+        public List<Point> Vertices { get; set; }
+
+        public Room()
+        {
+            Vertices = new List<Point>();
+        }
     }
 
     [DataContract]
     public class Bed
     {
         [DataMember]
-        public int Id { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
-        public string Label { get; set; }
+        public Point NamePosition { get; set; }
 
         [DataMember]
         public string State { get; set; }
+
+        [DataMember]
+        public List<Point> Vertices { get; set; }
+
+        public Bed()
+        {
+            Vertices = new List<Point>();
+        }
     }
 
     [DataContract]
@@ -58,5 +75,15 @@ namespace Alarmee.WardManager.Contracts
 
         [DataMember]
         public string State { get; set; }
+    }
+
+    [DataContract]
+    public class Point
+    {
+        [DataMember]
+        public int X { get; set; }
+
+        [DataMember]
+        public int Y { get; set; }
     }
 }

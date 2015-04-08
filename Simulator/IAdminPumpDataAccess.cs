@@ -11,6 +11,9 @@ namespace Simulator
         bool AddPump(string serialNumber);
 
         [OperationContract]
+        void ConnectToIpAddress(string serialNumber, string ipAddress);
+
+        [OperationContract]
         bool TurnOn(string serialNumber);
 
         [OperationContract]

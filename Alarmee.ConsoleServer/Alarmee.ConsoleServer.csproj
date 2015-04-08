@@ -57,6 +57,14 @@
       <Project>{cd38ffb8-ddeb-4acd-95f1-a857f4338181}</Project>
       <Name>Alarmee.WardManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Alarmee.WardPlan.Contract\Alarmee.WardPlan.Contract.csproj">
+      <Project>{07e3a60d-4696-40dc-97b4-6d01a69bb2e4}</Project>
+      <Name>Alarmee.WardPlan.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alarmee.WardPlan\Alarmee.WardPlan.csproj">
+      <Project>{5e483487-3409-4dfb-ab36-f549adc26121}</Project>
+      <Name>Alarmee.WardPlan</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PumpContract\PumpContract.csproj">
       <Project>{1b8f7114-18a6-4f98-852c-dd35064f5a45}</Project>
       <Name>PumpContract</Name>

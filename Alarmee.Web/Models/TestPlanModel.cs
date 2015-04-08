@@ -21,20 +21,35 @@ namespace Alarmee.Web.Models
             PumpsAsString = new List<string>();
             AlertsAsString = new List<string>();
 
-            wardState.Rooms.ForEach(r => Rooms.Add(new Item() { Name = r.Label, Color = stateToColor(r.State), X1 = 10, Y1 = 10, X2 = 290, Y2 = 390 }));
-            wardState.Beds.ForEach(b => Beds.Add(new Item() { Name = b.Label, Color = stateToColor(b.State), X1 = 60, Y1 = 110, X2 = 150, Y2 = 250 }));
-            wardState.Pumps.ForEach(p => PumpsAsString.Add(string.Format("{0} - {1}% Remaining time: {2} Medicament: {3} State:{4}", p.Bed, p.Progress, p.RemainingTime, p.Medicament, p.State)));
+            wardState.Rooms.ForEach(r => Rooms.Add(new Item() 
+            { 
+                Name = r.Name, 
+                NamePosition = new Point(){ X = r.NamePosition.X, Y = r.NamePosition.Y },
+                Vertices = r.Vertices,
+                Color = stateToColor(r.State)
+            }));
+            wardState.Beds.ForEach(b => Beds.Add(new Item() 
+            { 
+                Name = b.Name,
+                NamePosition = b.NamePosition,
+                Vertices = b.Vertices,
+                Color = stateToColor(b.State)
+            }));
+            wardState.Pumps.ForEach(p => PumpsAsString.Add(string.Format("{0} - {1}% Remaining time: {2} Medicament: {3} State:{4}", p.Bed, (int)(p.Progress*100), p.RemainingTime, p.Medicament, p.State)));
             wardState.Alerts.ForEach(a => AlertsAsString.Add(string.Format("{0} - {1} State:{2}", a.Bed, a.Label, a.State))); 
         }
 
         public class Item
         {
             public string Name { get; set; }
-            public int X1 { get; set; }
-            public int Y1 { get; set; }
-            public int X2 { get; set; }
-            public int Y2 { get; set; }
+            public Point NamePosition { get; set; }
+            public List<Point> Vertices { get; set; }
             public string Color { get; set; }
+
+            public Item()
+            {
+                Vertices = new List<Point>();
+            }
         }
 
         private string stateToColor(string state)

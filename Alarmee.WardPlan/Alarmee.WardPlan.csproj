@@ -4,17 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}</ProjectGuid>
+    <ProjectGuid>{5E483487-3409-4DFB-AB36-F549ADC26121}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Alarmee.StateContract</RootNamespace>
-    <AssemblyName>Alarmee.StateContract</AssemblyName>
+    <RootNamespace>Alarmee.WardPlan</RootNamespace>
+    <AssemblyName>Alarmee.WardPlan</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,7 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,10 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IStateDataAccess.cs" />
+    <Compile Include="PlanDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PumpState.cs" />
-    <Compile Include="StateDataAccessClient.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Plans.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alarmee.WardPlan.Contract\Alarmee.WardPlan.Contract.csproj">
+      <Project>{07e3a60d-4696-40dc-97b4-6d01a69bb2e4}</Project>
+      <Name>Alarmee.WardPlan.Contract</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

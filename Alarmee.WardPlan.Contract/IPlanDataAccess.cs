@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace Alarmee.StateContract
+namespace Alarmee.WardPlan.Contract
 {
     [ServiceContract]
-    public interface IStateDataAccess
+    public interface IPlanDataAccess
     {
         [OperationContract]
-        List<PumpState> GetAllPumps();
+        Plan getPlan(int id);
     }
 }

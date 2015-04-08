@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator", "Simulator\Simu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpContract", "PumpContract\PumpContract.csproj", "{1B8F7114-18A6-4F98-852C-DD35064F5A45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.StateContract", "Alarmee.StateContract\Alarmee.StateContract.csproj", "{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.Web", "Alarmee.Web\Alarmee.Web.csproj", "{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.WardManager", "Alarmee.WardManager\Alarmee.WardManager.csproj", "{CD38FFB8-DDEB-4ACD-95F1-A857F4338181}"
@@ -17,7 +15,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.WardManager.Contrac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.ConsoleServer", "Alarmee.ConsoleServer\Alarmee.ConsoleServer.csproj", "{5B87D89F-4982-413E-8948-93EB6EEC318F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.WardPlan", "Alarmee.WardPlan\Alarmee.WardPlan.csproj", "{5E483487-3409-4DFB-AB36-F549ADC26121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alarmee.WardPlan.Contract", "Alarmee.WardPlan.Contract\Alarmee.WardPlan.Contract.csproj", "{07E3A60D-4696-40DC-97B4-6D01A69BB2E4}"
+EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://gallikdaniel.visualstudio.com/defaultcollection
+		SccProjectUniqueName0 = PumpContract\\PumpContract.csproj
+		SccProjectName0 = PumpContract
+		SccAuxPath0 = https://gallikdaniel.visualstudio.com/defaultcollection
+		SccLocalPath0 = PumpContract
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = Simulator\\Simulator.csproj
+		SccProjectName1 = Simulator
+		SccAuxPath1 = https://gallikdaniel.visualstudio.com/defaultcollection
+		SccLocalPath1 = Simulator
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -31,10 +48,6 @@ Global
 		{1B8F7114-18A6-4F98-852C-DD35064F5A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B8F7114-18A6-4F98-852C-DD35064F5A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B8F7114-18A6-4F98-852C-DD35064F5A45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD5D943B-0635-4EFC-8B06-6E67916AFC7F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CBB561B-EF13-4DFB-8DF3-23B1BE37A34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +64,14 @@ Global
 		{5B87D89F-4982-413E-8948-93EB6EEC318F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B87D89F-4982-413E-8948-93EB6EEC318F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B87D89F-4982-413E-8948-93EB6EEC318F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E483487-3409-4DFB-AB36-F549ADC26121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E483487-3409-4DFB-AB36-F549ADC26121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E483487-3409-4DFB-AB36-F549ADC26121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E483487-3409-4DFB-AB36-F549ADC26121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E3A60D-4696-40DC-97B4-6D01A69BB2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E3A60D-4696-40DC-97B4-6D01A69BB2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E3A60D-4696-40DC-97B4-6D01A69BB2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E3A60D-4696-40DC-97B4-6D01A69BB2E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

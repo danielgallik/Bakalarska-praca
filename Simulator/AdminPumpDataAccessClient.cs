@@ -11,6 +11,11 @@ namespace Simulator
             return Channel.AddPump(serialNumber);
         }
 
+        public void ConnectToIpAddress(string serialNumber, string ipAddress)
+        {
+            Channel.ConnectToIpAddress(serialNumber, ipAddress);
+        }
+
         public bool TurnOn(string serialNumber)
         {
             return Channel.TurnOn(serialNumber);

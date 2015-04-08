@@ -9,6 +9,9 @@ namespace PumpContract
         public string SerialNumber { get; set; }
 
         [DataMember]
+        public string IpAddress { get; set; }
+
+        [DataMember]
         public string Medicament { get; set; }
 
         [DataMember]

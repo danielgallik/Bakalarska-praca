@@ -6,9 +6,6 @@ namespace Alarmee.WardManager.Contracts
 	[DataContract]
 	public class WardStateInfo
 	{
-		[DataMember]
-		public IList<RemainingTimeInfo> RemainingTimes { get; set; }
-
         [DataMember]
         public List<Bed> Beds { get; set; }
 
@@ -23,7 +20,6 @@ namespace Alarmee.WardManager.Contracts
 
 		public WardStateInfo()
 		{
-            RemainingTimes = new List<RemainingTimeInfo>();
             Beds = new List<Bed>();
             Rooms = new List<Room>();
             Pumps = new List<Pump>();

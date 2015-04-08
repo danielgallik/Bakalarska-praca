@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="IWardManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemainingTimeInfo.cs" />
     <Compile Include="WardManagerClient.cs" />
     <Compile Include="WardStateInfo.cs" />
     <Compile Include="WardStateItems.cs" />

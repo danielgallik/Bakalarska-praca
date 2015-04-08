@@ -9,11 +9,14 @@ namespace Alarmee.ConsoleServer
 		{
 			var serviceHost = new ServiceHost(typeof(WardManager.WardManager));
 			serviceHost.Open();
+            var service2Host = new ServiceHost(typeof(WardPlan.PlanDataAccess));
+            service2Host.Open();
 
 			Console.WriteLine("Alarmee Console Server started...");
 			Console.ReadLine();
 
-			serviceHost.Close();
+            service2Host.Close();
+            serviceHost.Close();
 			Console.WriteLine("Alarmee Console Server stopped...");
 		}
 	}

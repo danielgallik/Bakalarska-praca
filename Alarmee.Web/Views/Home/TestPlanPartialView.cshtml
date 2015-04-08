@@ -1,40 +1,45 @@
 ﻿@model Alarmee.Web.Models.TestPlanModel
 
-
 <div class="hospitalPlan">
-    <canvas id="myCanvas" width="300" height="400"></canvas>
-    <script>
-        var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext('2d');
+    <canvas id="myCanvas" width="600" height="400"></canvas>
 
-        for (var i = 0; i < @Model.Rooms.Count; i++)
-        {
+    @foreach (var bed in Model.Beds)
+    {
+        <script>
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext('2d');
+
             context.beginPath();
-            context.moveTo(@Model.Rooms[0].X1, @Model.Rooms[0].Y1);
-            context.lineTo(@Model.Rooms[0].X2, @Model.Rooms[0].Y1);
-            context.lineTo(@Model.Rooms[0].X2, @Model.Rooms[0].Y2);
-            context.lineTo(@Model.Rooms[0].X1, @Model.Rooms[0].Y2);
-            context.lineTo(@Model.Rooms[0].X1, @Model.Rooms[0].Y1);
-            context.stroke();
-
-            context.font = '20pt Calibri';
-            context.fillStyle = @Html.Raw(Json.Encode(Model.Rooms[0].Color));
-            context.fillText(@Html.Raw(Json.Encode(@Model.Rooms[0].Name)), 100, 50);
-        }
-
-        for (var i = 0; i < @Model.Beds.Count; i++)
-        {
-            context.beginPath();
-            context.rect(@Model.Beds[0].X1, @Model.Beds[0].Y1, @Model.Beds[0].X2, @Model.Beds[0].Y2);
-            context.fillStyle = @Html.Raw(Json.Encode(Model.Beds[0].Color));
+            context.rect(@bed.Vertices[0].X, @bed.Vertices[0].Y, @bed.Vertices[1].X, @bed.Vertices[1].Y);
+            context.fillStyle = @Html.Raw(Json.Encode(bed.Color));
             context.fill();
             context.stroke();
 
             context.font = '20pt Calibri';
             context.fillStyle = 'white';
-            context.fillText(@Html.Raw(Json.Encode(@Model.Beds[0].Name)), 100, 200);
-        }
-    </script>
+            context.fillText(@Html.Raw(Json.Encode(bed.Name)), @bed.NamePosition.X, @bed.NamePosition.Y);
+        </script>
+    }
+
+    @foreach (var room in Model.Rooms)
+    {
+        <script>
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+
+    context.beginPath();
+    context.moveTo(@room.Vertices[0].X, @room.Vertices[0].Y);
+            context.lineTo(@room.Vertices[1].X, @room.Vertices[1].Y);
+            context.lineTo(@room.Vertices[2].X, @room.Vertices[2].Y);
+            context.lineTo(@room.Vertices[3].X, @room.Vertices[3].Y);
+            context.lineTo(@room.Vertices[0].X, @room.Vertices[0].Y);
+            context.stroke();
+
+            context.font = '20pt Calibri';
+            context.fillStyle = @Html.Raw(Json.Encode(room.Color));
+            context.fillText(@Html.Raw(Json.Encode(room.Name)), @room.NamePosition.X, @room.NamePosition.Y);
+        </script>
+    }
 </div>
 
 <div class="pumpsInfo">

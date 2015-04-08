@@ -23,6 +23,15 @@ namespace Simulator
             return true;
         }
 
+        public void ConnectToIpAddress(string serialNumber, string ipAddress)
+        {
+            Pump pump;
+            if (myPumps.TryGetValue(serialNumber, out pump))
+            {
+                pump.ConnectToIpAddress(ipAddress);
+            }            
+        }
+
         public bool TurnOn(string serialNumber)
         {
             Pump pump;
@@ -88,12 +97,15 @@ namespace Simulator
             Pump pump;
             if (myPumps.TryGetValue(serialNumber, out pump))
             {
-                PumpDto pumpDto = new PumpDto();
-                pumpDto.SerialNumber = pump.SerialNumber;
-                pumpDto.Medicament = pump.Medicament;
-                pumpDto.CurrentState = pump.CurrentState;
-                pumpDto.TotalTime = pump.TotalTime;
-                pumpDto.RemainingTime = pump.RemainingTime;
+                PumpDto pumpDto = new PumpDto()
+                {
+                    SerialNumber = pump.SerialNumber,
+                    Medicament = pump.Medicament,
+                    CurrentState = pump.CurrentState,
+                    TotalTime = pump.TotalTime,
+                    RemainingTime = pump.RemainingTime,
+                    IpAddress = pump.IpAddress
+                };
                 return pumpDto;
             }
             return null;
@@ -107,7 +119,8 @@ namespace Simulator
                 Medicament = x.Value.Medicament,
                 CurrentState = x.Value.CurrentState,
                 TotalTime = x.Value.TotalTime,
-                RemainingTime = x.Value.RemainingTime
+                RemainingTime = x.Value.RemainingTime,
+                IpAddress = x.Value.IpAddress
             }).ToList();
         }
     }

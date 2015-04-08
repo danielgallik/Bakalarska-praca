@@ -18,9 +18,6 @@ namespace Alarmee.Web.Controllers
             var wardState = client.GetWardState();
             client.Close();
 
-            StringBuilder sb = new StringBuilder();
-            wardState.RemainingTimes.ForEach(x => sb.AppendLine(string.Format("Progres: {0}, Remaining time: {1}, Medicament: {2}", x.Progress, x.RemainingTime, x.Medicament)));
-
             return new TestPlanModel(wardState);
         }
 

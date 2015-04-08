@@ -9,6 +9,7 @@ namespace Simulator
     {
         public string SerialNumber { get; private set; }
         public string Medicament { get; private set; }
+        public string IpAddress { get; private set; }
         public string CurrentState { get { return MyCurrentState.ToString(); } }
         public int TotalTime { get { return Convert.ToInt32(MyTotalTime); } }
         public int RemainingTime { get { return Convert.ToInt32(MyRemainingTime); } }
@@ -116,6 +117,11 @@ namespace Simulator
             return true;
         }
 
+        public void ConnectToIpAddress(string ipAddress)
+        {
+            IpAddress = ipAddress;
+        }
+
         private void ElapsedTimer(object sender, ElapsedEventArgs e)
         {
             lock (MyPumpLock)
@@ -143,7 +149,6 @@ namespace Simulator
                         MyTimer.Stop();
                         break;
                 }
-                //Console.WriteLine("Current state: " + MyCurrentState + " Remaining time: " + MyRemainingTime + " Remaining volume: " + Math.Round(MyRemainingVolume, 2));
             }
         }
 
