@@ -12,39 +12,33 @@ namespace Alarmee.Web.Controllers
 {
 	public class HomeController : Controller
 	{
-        private TestPlanModel GetModel()
+        private PlanDetailModel GetModel(string id)
         {
             var client = new WardManagerClient();
-            var wardState = client.GetWardState();
+            var wardState = client.GetWardState(id);
             client.Close();
-
-            return new TestPlanModel(wardState);
+            PlanDetailModel model = new PlanDetailModel(wardState);
+            model.Id = id;
+            return model;
         }
 
-		public ActionResult Index()
-		{
-
-            return View(GetModel());
-		}
-
-        [HttpGet]
-        public ActionResult Update()
+        public ActionResult Index()
         {
-            return PartialView("TestPlanPartialView", GetModel());
+            var client = new WardManagerClient();
+            Dictionary<string, string> wardPlan = client.getWardPlan();
+            client.Close();
+            return View(wardPlan);
         }
 
-		public ActionResult About()
-		{
-			ViewBag.Message = "Your application description page.";
+        public ActionResult Plan(string id = "")
+        {
+            return View(GetModel(id));
+        }
 
-			return View();
-		}
-
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
-			return View();
-		}
+        [HttpPost]
+        public ActionResult Update(string id = "")
+        {
+            return PartialView("PlanDetailPartialView", GetModel(id));
+        }
 	}
 }

@@ -1,0 +1,4 @@
+D:\Dropbox\C#\Bakalarska praca\PumpContract\bin\Release\PumpContract.dll
+D:\Dropbox\C#\Bakalarska praca\PumpContract\bin\Release\PumpContract.pdb
+D:\Dropbox\C#\Bakalarska praca\PumpContract\obj\Release\PumpContract.dll
+D:\Dropbox\C#\Bakalarska praca\PumpContract\obj\Release\PumpContract.pdb

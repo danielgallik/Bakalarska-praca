@@ -1,25 +1,17 @@
-﻿@model Alarmee.Web.Models.TestPlanModel
+﻿@model Dictionary<string, string>
 
 @{
     ViewBag.Title = "Home Page";
 }
-
-<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
-
-<div id="PlanDetail">
-    @{Html.RenderPartial("TestPlanPartialView", Model);}
+<div class="planList">
+    <h1>Select plan:</h1>
+    <hr />
+    <ul>
+        @foreach (KeyValuePair<string, string> item in Model)
+        {
+            <li>
+                @Html.ActionLink(item.Value, "Plan", "Home", new { id = item.Key }, null)
+            </li>
+        }
+    </ul>
 </div>
-
-<script>
-    $(document).ready(function () {
-        window.setInterval(function () {
-            $.ajax({
-                url: "/Home/Update",
-                type: "GET"
-            })
-            .done(function (partialViewResult) {
-                $("#PlanDetail").html(partialViewResult);
-            });
-        }, 1000);
-    });
-</script>

@@ -1,0 +1,16 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.ConsoleServer.exe.config
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.ConsoleServer.exe
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.ConsoleServer.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.WardManager.Contracts.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.WardManager.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.WardPlan.Contract.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.WardPlan.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\PumpContract.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.WardManager.Contracts.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.WardManager.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.WardPlan.Contract.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\Alarmee.WardPlan.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Release\PumpContract.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\obj\Release\Alarmee.ConsoleServer.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\obj\Release\Alarmee.ConsoleServer.exe
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\obj\Release\Alarmee.ConsoleServer.pdb

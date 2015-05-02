@@ -94,7 +94,7 @@ namespace Alarmee.WardManager
                                     wardStateInfo.Alerts.Add(new Alert()
                                     {
                                         Bed = bed.Name,
-                                        Label = "PreAlarm",
+                                        Message = "PreAlarm",
                                         State = pump.CurrentState
                                     });
                                     if (bedInfo.State != stateAlarm)
@@ -111,7 +111,7 @@ namespace Alarmee.WardManager
                                     wardStateInfo.Alerts.Add(new Alert()
                                     {
                                         Bed = bed.Name,
-                                        Label = "Alarm",
+                                        Message = "Alarm",
                                         State = pump.CurrentState
                                     });
                                     bedInfo.State = stateAlarm;
@@ -127,15 +127,22 @@ namespace Alarmee.WardManager
             return wardStateInfo;
         }
 
-        private decimal calculateRemainingTimeProgress(PumpDto pump)
+        private int calculateRemainingTimeProgress(PumpDto pump)
         {
-            return ((decimal)pump.RemainingTime / pump.TotalTime);
+            return (pump.RemainingTime * 100 / pump.TotalTime);
         }
 
 		private string formatRemainingTime(PumpDto pump)
-		{
-			// TODO: needs to be impl. according spec.
-			return string.Format("{0} s", pump.RemainingTime);
+        {
+            if (pump.RemainingTime >= 3600)
+            {
+                return string.Format("{0} hour", pump.RemainingTime / 3600);
+            }
+            if (pump.RemainingTime >= 60)
+            {
+                return string.Format("{0} min", pump.RemainingTime / 60);
+            }
+			return string.Format("{0} sec", pump.RemainingTime);
 		}
 	}
 }

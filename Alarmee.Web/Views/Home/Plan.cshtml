@@ -1,0 +1,32 @@
+﻿@model Alarmee.Web.Models.PlanDetailModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<div id="PlanDetail">
+    @{Html.RenderPartial("PlanDetailPartialView", Model);}
+</div>
+
+<script>
+    $(document).ready(function () {
+        var model = new Object();
+        model.Id = "@Model.Id";
+        window.setInterval(function () {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Update")",
+                dataType: "html",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: model.Id })
+            }).done(function (partialViewResult) {
+                $("#PlanDetail").html(partialViewResult);
+            }).fail(function (xhr, status, error) {
+                console.log("Status: " + status + " Error: " + error);
+                console.log(xhr);
+            });
+        }, 1000);
+    });
+</script>

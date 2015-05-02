@@ -28,6 +28,7 @@ namespace Simulator
         private object MyPumpLock;
         private Timer MyTimer;
         private Dictionary<Transition, State> MyTransitions;
+        private List<MyAlarm> MyAlarms;
         private State MyCurrentState { get; set; }
 
         private double MyPrealarmStartTime = Convert.ToDouble(ConfigurationManager.AppSettings["PreAlarm"]);
@@ -44,9 +45,14 @@ namespace Simulator
                 { new Transition(State.Running, Command.Stop), State.Stop },
                 { new Transition(State.Running, Command.Warning), State.PreAlarm },
                 { new Transition(State.Running, Command.Error), State.Alarm },
-                { new Transition(State.PreAlarm, Command.Acknowledge), State.Running },
+                { new Transition(State.PreAlarm, Command.Stop), State.Stop },
                 { new Transition(State.PreAlarm, Command.Error), State.Alarm },
                 { new Transition(State.Alarm, Command.Acknowledge), State.Stop }
+            };
+            MyAlarms = new List<MyAlarm>
+            {
+                {new MyAlarm(){Used = false, ProgressPosition = 0.2}},
+                {new MyAlarm(){Used = false, ProgressPosition = 0.8}}
             };
             MyCurrentState = State.Off;
             MyRate = 0;
@@ -112,7 +118,9 @@ namespace Simulator
         public bool AcknowledgeAlert()
         {
             if (!MoveNext(Command.Acknowledge))
+            {
                 return false;
+            }
             MyTimer.Start();
             return true;
         }
@@ -127,10 +135,14 @@ namespace Simulator
             lock (MyPumpLock)
             {
                 // check alarms
-                if (MyRemainingTime == MyPrealarmStartTime)
+                if (MyCurrentState == State.Running && MyRemainingTime <= MyPrealarmStartTime)
+                {
                     MoveNext(Command.Warning);
+                }
                 if (MyRemainingTime <= 0 || MyRemainingVolume <= 0)
+                {
                     MoveNext(Command.Error);
+                }
 
                 switch (MyCurrentState)
                 {
@@ -141,9 +153,15 @@ namespace Simulator
                         MyRemainingTime = MyTotalTime - MyElapsedTime;
                         MyInfusedVolume = MyRate * MyElapsedTime / 3600;
                         MyRemainingVolume = MyTotalVolume - MyInfusedVolume;
-                        // test alarm event
-                        if (Math.Round(MyTotalTime * 0.8, 0) == MyRemainingTime || Math.Round(MyTotalTime * 0.2, 0) == MyRemainingTime)
-                            MoveNext(Command.Error);
+                        // test MyAlarm events
+                        foreach (MyAlarm myAlarm in MyAlarms)
+                        {
+                            if (!myAlarm.Used && MyRemainingTime / MyTotalTime <= myAlarm.ProgressPosition)
+                            {
+                                myAlarm.Used = true;
+                                MoveNext(Command.Error);
+                            }
+                        }
                         break;
                     default:
                         MyTimer.Stop();
@@ -157,7 +175,9 @@ namespace Simulator
             Transition transition = new Transition(MyCurrentState, command);
             State nextState;
             if (!MyTransitions.TryGetValue(transition, out nextState))
+            {
                 return false;
+            }
             MyCurrentState = nextState;
             return true;
         }
@@ -204,6 +224,12 @@ namespace Simulator
                 Transition other = obj as Transition;
                 return other != null && this.CurrentState == other.CurrentState && this.Command == other.Command;
             }
+        }
+
+        private class MyAlarm
+        {
+            public bool Used { get; set; }
+            public double ProgressPosition { get; set; }
         }
     }
 }

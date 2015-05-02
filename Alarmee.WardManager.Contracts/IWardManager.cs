@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using System.Collections.Generic;
 
 namespace Alarmee.WardManager.Contracts
 {
@@ -6,6 +7,9 @@ namespace Alarmee.WardManager.Contracts
 	public interface IWardManager
     {
         [OperationContract]
-        WardStateInfo GetWardState();
+        Dictionary<string, string> getWardPlan();
+
+        [OperationContract]
+        WardStateInfo GetWardState(string id);
 	}
 }

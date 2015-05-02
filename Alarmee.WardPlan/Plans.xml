@@ -27,15 +27,51 @@
       <Vertex X="460" Y="350"/>
       <Vertex X="460" Y="10"/>
       <Bed>
-        <Name X="330" Y="160">001</Name>
+        <Name X="330" Y="160">003</Name>
         <IpAddress>192.168.1.3</IpAddress>
         <Vertex X="290" Y="110"/>
         <Vertex X="120" Y="80"/>
       </Bed>
       <Bed>
-        <Name X="330" Y="260">002</Name>
+        <Name X="330" Y="260">004</Name>
         <IpAddress>192.168.1.4</IpAddress>
         <Vertex X="290" Y="210"/>
+        <Vertex X="120" Y="80"/>
+      </Bed>
+    </Room>
+  </Plan>
+  <Plan Id="oncology" Name="Oncology">
+    <Room>
+      <Name X="80" Y="50">Room 1</Name>
+      <Vertex X="10" Y="10"/>
+      <Vertex X="10" Y="350"/>
+      <Vertex X="230" Y="350"/>
+      <Vertex X="230" Y="10"/>
+      <Bed>
+        <Name X="100" Y="160">001</Name>
+        <IpAddress>192.168.1.1</IpAddress>
+        <Vertex X="60" Y="110"/>
+        <Vertex X="120" Y="80"/>
+      </Bed>
+      <Bed>
+        <Name X="100" Y="260">002</Name>
+        <IpAddress>192.168.1.2</IpAddress>
+        <Vertex X="60" Y="210"/>
+        <Vertex X="120" Y="80"/>
+      </Bed>
+    </Room>
+  </Plan>
+  <Plan Id="intensive_care_unit" Name="Intensive Care Unit">
+    <Room>
+      <Name X="80" Y="50">Room 1</Name>
+      <Vertex X="10" Y="10"/>
+      <Vertex X="10" Y="350"/>
+      <Vertex X="230" Y="350"/>
+      <Vertex X="230" Y="10"/>
+      <Bed>
+        <Name X="100" Y="160">001</Name>
+        <IpAddress>192.168.1.1</IpAddress>
+        <Vertex X="60" Y="110"/>
         <Vertex X="120" Y="80"/>
       </Bed>
     </Room>

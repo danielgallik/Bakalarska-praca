@@ -22,3 +22,91 @@ select,
 textarea {
     max-width: 500px;
 }
+
+.planList ul li{
+    display:inline-block;
+}
+
+.planList ul li a{
+    color:white;
+    background-color:rgb(114, 254, 211);
+    display:table-cell;
+    width:200px;
+    height:100px;
+    text-align:center;
+    vertical-align:middle;
+    font-size:1.5em;
+    text-decoration:none;
+}
+
+.planList ul li a:hover{
+    color:white;
+    background-color:rgb(0, 155, 107);
+    text-decoration:none;
+}
+
+.hospitalPlan{
+    width:1200px;
+    display:inline-block;
+}
+
+.infoPlan{
+    position:relative;
+    display:inline-block;
+    float:left;
+    width:800px;
+}
+
+.infoBoxes{
+    display:inline-block;
+    position:relative;
+    width:400px;
+}
+
+.infoBox{
+    color:gray;
+    margin: 10px;
+    width: 380px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 2px 2px 10px #888888;
+}
+
+.infoBox hr{
+    margin:5px;
+}
+
+#pumpList{
+    display:table;
+    width:100%;
+}
+
+.pumpListHead, .pumpListBody{
+}
+
+#pumpList .pump{
+    line-height:30px;
+}
+
+
+#pumpList .pumpBed{
+    float:left;
+    width:10%;
+}
+
+#pumpList .pumpRemTime{
+    float:left;
+    width:25%;
+}
+
+#pumpList .pumpInfo{
+    float:left;
+    width:65%;
+}
+
+#pumpList .pumpProgress{
+    float:left;
+    width:100%;
+    line-height:5px;
+    background-color:lightgray;
+}

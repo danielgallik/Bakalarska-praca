@@ -1,0 +1,7 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\bin\Release\Alarmee.WardPlan.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\bin\Release\Alarmee.WardPlan.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\bin\Release\Alarmee.WardPlan.Contract.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\bin\Release\Alarmee.WardPlan.Contract.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\obj\Release\Alarmee.WardPlan.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\obj\Release\Alarmee.WardPlan.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\obj\Release\Alarmee.WardPlan.pdb

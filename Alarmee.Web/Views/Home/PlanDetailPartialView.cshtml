@@ -1,0 +1,84 @@
+﻿@model Alarmee.Web.Models.PlanDetailModel
+
+<div class="hospitalPlan">
+    <div class="infoPlan">
+        <canvas id="planCanvas" width="800" height="600"></canvas>
+    </div>
+
+    @foreach (var bed in Model.Beds)
+    {
+        <script>
+            var canvas = document.getElementById('planCanvas');
+            var context = canvas.getContext('2d');
+
+            context.beginPath();
+            context.rect(@bed.Vertices[0].X, @bed.Vertices[0].Y, @bed.Vertices[1].X, @bed.Vertices[1].Y);
+            context.fillStyle = @Html.Raw(Json.Encode(bed.Color));
+            context.fill();
+            context.stroke();
+
+            context.font = '20pt Calibri';
+            context.fillStyle = 'white';
+            context.fillText(@Html.Raw(Json.Encode(bed.Name)), @bed.NamePosition.X, @bed.NamePosition.Y);
+        </script>
+    }
+
+    @foreach (var room in Model.Rooms)
+    {
+        <script>
+            var canvas = document.getElementById('planCanvas');
+            var context = canvas.getContext('2d');
+
+            context.beginPath();
+            context.moveTo(@room.Vertices[0].X, @room.Vertices[0].Y);
+            context.lineTo(@room.Vertices[1].X, @room.Vertices[1].Y);
+            context.lineTo(@room.Vertices[2].X, @room.Vertices[2].Y);
+            context.lineTo(@room.Vertices[3].X, @room.Vertices[3].Y);
+            context.lineTo(@room.Vertices[0].X, @room.Vertices[0].Y);
+            context.stroke();
+
+            context.font = '20pt Calibri';
+            context.fillStyle = @Html.Raw(Json.Encode(room.Color));
+            context.fillText(@Html.Raw(Json.Encode(room.Name)), @room.NamePosition.X, @room.NamePosition.Y);
+        </script>
+    }
+    <div class="infoBoxes">
+        <div id="pumpBox" class="infoBox">
+            <h2>Remaining Times</h2>
+            <hr />
+            <div id="pumpList">
+                <div class="pumpListHead">
+                    <div class="pump">
+                        <span class="pumpBed">Bed</span>
+                        <span class="pumpRemTime">Rem.Time</span>
+                        <span class="pumpInfo">Medication & Pump Type</span>
+                    </div>
+                </div>
+                <div class="pumpListBody">
+                    @foreach (var pump in @Model.Pumps)
+                    {
+                        <div class="pump">
+                            <span class="pumpBed">@pump.Bed</span>
+                            <span class="pumpRemTime">@pump.RemainingTime</span>
+                            <span class="pumpInfo">@pump.Medicament</span>
+                            <div class="pumpProgress"><span style="display:block;color:@pump.ProgressColor;background-color:@pump.ProgressColor;width:@pump.Progress%;">.</span></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="alertBox" class="infoBox">
+            <h2>Alerts</h2>
+            <hr />
+            <div id="alertList">
+                @foreach (var alert in @Model.Alerts)
+                {
+                    <div class="alert" style="background-color:@alert.Color;">
+                        <span class="alertBed">@alert.Bed</span>
+                        <span class="alertMessage">@alert.Message</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

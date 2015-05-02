@@ -24,15 +24,28 @@ namespace Alarmee.WardPlan
             }
         }
 
-        public Plan getPlan(int id)
+        public Dictionary<string, string> getPlanList()
         {
+            Dictionary<string, string> planList = new Dictionary<string, string>();
             if (document != null)
             {
-                Plan plan = null;
-                XmlNode nodePlan = document.SelectSingleNode("/Plans/Plan[@Id='" + id.ToString() + "']");
+                XmlNodeList nodePlanList = document.GetElementsByTagName("Plan");
+                foreach (XmlNode nodePlan in nodePlanList)
+                {
+                    planList[nodePlan.Attributes["Id"].Value] = nodePlan.Attributes["Name"].Value;
+                }
+            }
+            return planList;
+        }
+
+        public Plan getPlan(string id)
+        {
+            Plan plan = new Plan();
+            if (document != null)
+            {
+                XmlNode nodePlan = document.SelectSingleNode("/Plans/Plan[@Id='" + id + "']");
                 if (nodePlan != null)
                 {
-                    plan = new Plan();
                     plan.Name = nodePlan.Attributes["Name"].Value;
 
                     foreach(XmlNode nodePlanChild in nodePlan.ChildNodes)
@@ -94,12 +107,8 @@ namespace Alarmee.WardPlan
                         }
                     }
                 }
-                return plan;
             }
-            else
-            {
-                return null;
-            }
+            return plan;
         }
     }
 }
