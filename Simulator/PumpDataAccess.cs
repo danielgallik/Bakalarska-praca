@@ -15,11 +15,13 @@ namespace Simulator
             myPumps = new Dictionary<string, Pump>();
         }
 
-        public bool AddPump(string serialNumber)
+        public bool AddPump(string serialNumber, string type = "")
         {
             if (myPumps.ContainsKey(serialNumber))
+            {
                 return false;
-            myPumps.Add(serialNumber, new Pump(serialNumber));
+            }
+            myPumps.Add(serialNumber, new Pump(serialNumber, type));
             return true;
         }
 
@@ -102,9 +104,11 @@ namespace Simulator
                     SerialNumber = pump.SerialNumber,
                     Medicament = pump.Medicament,
                     CurrentState = pump.CurrentState,
+                    Type = pump.TypePump,
                     TotalTime = pump.TotalTime,
                     RemainingTime = pump.RemainingTime,
-                    IpAddress = pump.IpAddress
+                    IpAddress = pump.IpAddress,
+                    AlertMessage = pump.AlertMessage
                 };
                 return pumpDto;
             }
@@ -118,9 +122,11 @@ namespace Simulator
                 SerialNumber = x.Value.SerialNumber,
                 Medicament = x.Value.Medicament,
                 CurrentState = x.Value.CurrentState,
+                Type = x.Value.TypePump,
                 TotalTime = x.Value.TotalTime,
                 RemainingTime = x.Value.RemainingTime,
-                IpAddress = x.Value.IpAddress
+                IpAddress = x.Value.IpAddress,
+                AlertMessage = x.Value.AlertMessage
             }).ToList();
         }
     }

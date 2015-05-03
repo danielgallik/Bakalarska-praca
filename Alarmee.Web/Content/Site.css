@@ -23,13 +23,17 @@ textarea {
     max-width: 500px;
 }
 
+.planList{
+    color:gray;
+}
+
 .planList ul li{
     display:inline-block;
 }
 
 .planList ul li a{
     color:white;
-    background-color:rgb(114, 254, 211);
+    background-color:rgb(150, 150, 150);
     display:table-cell;
     width:200px;
     height:100px;
@@ -54,7 +58,9 @@ textarea {
     position:relative;
     display:inline-block;
     float:left;
-    width:800px;
+    width:780px;
+    box-shadow: 2px 2px 10px #888888;
+    margin: 10px;
 }
 
 .infoBoxes{
@@ -81,7 +87,8 @@ textarea {
     width:100%;
 }
 
-.pumpListHead, .pumpListBody{
+.pumpListHead{
+    font-weight:bolder;
 }
 
 #pumpList .pump{
@@ -101,7 +108,12 @@ textarea {
 
 #pumpList .pumpInfo{
     float:left;
-    width:65%;
+    width:55%;
+}
+
+#pumpList .pumpType{
+    float:left;
+    width:10%;
 }
 
 #pumpList .pumpProgress{
@@ -109,4 +121,30 @@ textarea {
     width:100%;
     line-height:5px;
     background-color:lightgray;
+}
+
+#alertList{
+    width:100%;
+}
+
+#alertList .alert{
+    color:white;
+    display:block;
+    margin:5px;
+    padding:5px;
+}
+
+#alertList .alertBed{
+    width:20%;
+    display:inline-block;
+}
+
+#alertList .alertMessage{
+    width:60%;
+    display:inline-block;
+}
+
+#alertList .alertType{
+    width:10%;
+    display:inline-block;
 }

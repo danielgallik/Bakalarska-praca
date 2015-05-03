@@ -10,7 +10,9 @@ namespace Simulator
         public string SerialNumber { get; private set; }
         public string Medicament { get; private set; }
         public string IpAddress { get; private set; }
+        public string AlertMessage { get; private set; }
         public string CurrentState { get { return MyCurrentState.ToString(); } }
+        public string TypePump { get { return MyType.ToString(); } }
         public int TotalTime { get { return Convert.ToInt32(MyTotalTime); } }
         public int RemainingTime { get { return Convert.ToInt32(MyRemainingTime); } }
 
@@ -30,13 +32,23 @@ namespace Simulator
         private Dictionary<Transition, State> MyTransitions;
         private List<MyAlarm> MyAlarms;
         private State MyCurrentState { get; set; }
+        private Type MyType { get; set;}
 
         private double MyPrealarmStartTime = Convert.ToDouble(ConfigurationManager.AppSettings["PreAlarm"]);
 
-        public Pump(string serialNumber)
+        public Pump(string serialNumber, string type = "")
         {
+            if (type.ToLower() == Type.Injection.ToString().ToLower())
+            {
+                MyType = Type.Injection;
+            }
+            else
+            {
+                MyType = Type.Infusion;
+            }
             MyPumpLock = new object();
             SerialNumber = serialNumber;
+            AlertMessage = "";
             MyTransitions = new Dictionary<Transition, State>
             {
                 { new Transition(State.Off, Command.TurnOn), State.Stop },
@@ -51,8 +63,8 @@ namespace Simulator
             };
             MyAlarms = new List<MyAlarm>
             {
-                {new MyAlarm(){Used = false, ProgressPosition = 0.2}},
-                {new MyAlarm(){Used = false, ProgressPosition = 0.8}}
+                {new MyAlarm(){Used = false, ProgressPosition = 0.2, Message = "The door is open"}},
+                {new MyAlarm(){Used = false, ProgressPosition = 0.8, Message = "Pressure too high"}}
             };
             MyCurrentState = State.Off;
             MyRate = 0;
@@ -112,7 +124,12 @@ namespace Simulator
 
         public bool StopInfusion()
         {
-            return MoveNext(Command.Stop);
+            if (!MoveNext(Command.Stop))
+            {
+                return false;
+            }
+            MyTimer.Stop();
+            return true;
         }
 
         public bool AcknowledgeAlert()
@@ -121,7 +138,7 @@ namespace Simulator
             {
                 return false;
             }
-            MyTimer.Start();
+            AlertMessage = "";
             return true;
         }
 
@@ -138,10 +155,12 @@ namespace Simulator
                 if (MyCurrentState == State.Running && MyRemainingTime <= MyPrealarmStartTime)
                 {
                     MoveNext(Command.Warning);
+                    AlertMessage = "The infusion is near end";
                 }
                 if (MyRemainingTime <= 0 || MyRemainingVolume <= 0)
                 {
                     MoveNext(Command.Error);
+                    AlertMessage = "The infusion ended";
                 }
 
                 switch (MyCurrentState)
@@ -159,6 +178,7 @@ namespace Simulator
                             if (!myAlarm.Used && MyRemainingTime / MyTotalTime <= myAlarm.ProgressPosition)
                             {
                                 myAlarm.Used = true;
+                                AlertMessage = myAlarm.Message;
                                 MoveNext(Command.Error);
                             }
                         }
@@ -180,6 +200,12 @@ namespace Simulator
             }
             MyCurrentState = nextState;
             return true;
+        }
+
+        private enum Type
+        {
+            Infusion,
+            Injection
         }
 
         private enum State
@@ -230,6 +256,7 @@ namespace Simulator
         {
             public bool Used { get; set; }
             public double ProgressPosition { get; set; }
+            public string Message { get; set; }
         }
     }
 }

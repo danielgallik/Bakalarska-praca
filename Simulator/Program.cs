@@ -26,15 +26,21 @@ namespace Simulator
 				{
 					string[] tokens = commandLine.Split(' ');
 
-					if (tokens.Length != 2)
+					if (tokens.Length < 2 )
 					{
 						Console.WriteLine("Invalid command syntax. Serial number expected.");
 						writeHelp();
 						continue;
                     }
-
                     var adminClient = new AdminPumpDataAccessClient();
-					adminClient.AddPump(tokens[1]);
+                    if (tokens.Length == 2)
+                    {
+                        adminClient.AddPump(tokens[1]);
+                    }
+                    else
+                    {
+                        adminClient.AddPump(tokens[1], tokens[2]);
+                    }
                     adminClient.ConnectToIpAddress(tokens[1], "192.168.1.1");
 					adminClient.Close();
                 }
@@ -98,15 +104,19 @@ namespace Simulator
                 {
                     string[] tokens = commandLine.Split(' ');
 
-                    if (tokens.Length != 4)
+                    if (tokens.Length < 4)
                     {
                         Console.WriteLine("Invalid command syntax. Rate, volume and medicament expected.");
                         writeHelp();
                         continue;
                     }
-
+                    string medicament = "";
+                    for (int i = 3; i < tokens.Length; i++)
+                    {
+                        medicament += " " + tokens[i];
+                    }
                     var adminClient = new AdminPumpDataAccessClient();
-                    if (!adminClient.SetInfusionParams(activePump, Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2]), tokens[3]))
+                    if (!adminClient.SetInfusionParams(activePump, Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2]), medicament.Trim()))
                         Console.WriteLine("Cannot set pump.");
                     adminClient.Close();
                 }
@@ -176,7 +186,7 @@ namespace Simulator
         private static void writeHelp()
         {
             Console.WriteLine("Available commands:");
-            Console.WriteLine("   add <serial_number>");
+            Console.WriteLine("   add <serial_number> {infusion,injection}");
             Console.WriteLine("   list");
             Console.WriteLine("   select <pump_number>");
             if (activePump != "")

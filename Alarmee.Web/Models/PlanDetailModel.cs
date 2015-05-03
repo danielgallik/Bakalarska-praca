@@ -43,6 +43,7 @@ namespace Alarmee.Web.Models
                 Bed = p.Bed,
                 RemainingTime = p.RemainingTime,
                 Medicament = p.Medicament,
+                Type = p.Type,
                 Progress = p.Progress,
                 ProgressColor = stateToColor(p.State)
             }));
@@ -50,6 +51,8 @@ namespace Alarmee.Web.Models
             {
                 Bed = a.Bed,
                 Message = a.Message,
+                Medicament = a.Medicament,
+                Type = a.Type,
                 Color = stateToColor(a.State)
             })); 
         }
@@ -72,6 +75,7 @@ namespace Alarmee.Web.Models
             public string Bed { get; set; }
             public string RemainingTime { get; set; }
             public string Medicament { get; set; }
+            public string Type { set; get; }
             public string ProgressColor { set; get; }
             public int Progress { set; get; }
         }
@@ -80,6 +84,8 @@ namespace Alarmee.Web.Models
         {
             public string Bed { get; set; }
             public string Message { get; set; }
+            public string Medicament { get; set; }
+            public string Type { set; get; }
             public string Color { get; set; }
         }
 
@@ -90,9 +96,9 @@ namespace Alarmee.Web.Models
                 case "Running":
                     return "rgb(0, 155, 107)";
                 case "PreAlarm":
-                    return "orange";
+                    return "rgb(238, 116, 0)";
                 case "Alarm":
-                    return "red";
+                    return "rgb(200, 0, 0)";
                 default:
                     return "gray";
             }
@@ -103,9 +109,9 @@ namespace Alarmee.Web.Models
             switch (state)
             {
                 case "PreAlarm":
-                    return "orange";
+                    return "rgb(238, 116, 0)";
                 case "Alarm":
-                    return "red";
+                    return "rgb(200, 0, 0)";
                 default:
                     return "gray";
             }

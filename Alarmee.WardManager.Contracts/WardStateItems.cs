@@ -58,6 +58,9 @@ namespace Alarmee.WardManager.Contracts
         public string Medicament { get; set; }
 
         [DataMember]
+        public string Type { get; set; }
+
+        [DataMember]
         public int Progress { get; set; }
 
         [DataMember]
@@ -72,6 +75,12 @@ namespace Alarmee.WardManager.Contracts
 
         [DataMember]
         public string Message { get; set; }
+
+        [DataMember]
+        public string Medicament { get; set; }
+
+        [DataMember]
+        public string Type { get; set; }
 
         [DataMember]
         public string State { get; set; }

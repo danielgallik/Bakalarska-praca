@@ -6,9 +6,9 @@ namespace Simulator
 {
     public class AdminPumpDataAccessClient : ClientBase<IAdminPumpDataAccess>, IAdminPumpDataAccess
     {
-        public bool AddPump(string serialNumber)
+        public bool AddPump(string serialNumber, string type = "")
         {
-            return Channel.AddPump(serialNumber);
+            return Channel.AddPump(serialNumber, type);
         }
 
         public void ConnectToIpAddress(string serialNumber, string ipAddress)

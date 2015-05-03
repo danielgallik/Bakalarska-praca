@@ -12,6 +12,9 @@ namespace PumpContract
         public string IpAddress { get; set; }
 
         [DataMember]
+        public string Type { get; set; }
+
+        [DataMember]
         public string Medicament { get; set; }
 
         [DataMember]
@@ -22,5 +25,8 @@ namespace PumpContract
 
         [DataMember]
         public int RemainingTime { get; set; }
+
+        [DataMember]
+        public string AlertMessage { get; set; }
     }
 }

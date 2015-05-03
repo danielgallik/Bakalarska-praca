@@ -8,7 +8,7 @@ namespace Simulator
     public interface IAdminPumpDataAccess
     {
         [OperationContract]
-        bool AddPump(string serialNumber);
+        bool AddPump(string serialNumber, string type);
 
         [OperationContract]
         void ConnectToIpAddress(string serialNumber, string ipAddress);

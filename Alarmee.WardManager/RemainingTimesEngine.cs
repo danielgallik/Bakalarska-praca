@@ -69,6 +69,7 @@ namespace Alarmee.WardManager
                                         Bed = bed.Name,
                                         Medicament = pump.Medicament,
                                         Progress = calculateRemainingTimeProgress(pump),
+                                        Type = pump.Type,
                                         RemainingTime = formatRemainingTime(pump),
                                         State = pump.CurrentState
                                     });
@@ -88,13 +89,16 @@ namespace Alarmee.WardManager
                                         Bed = bed.Name,
                                         Medicament = pump.Medicament,
                                         Progress = calculateRemainingTimeProgress(pump),
+                                        Type = pump.Type,
                                         RemainingTime = formatRemainingTime(pump),
                                         State = pump.CurrentState
                                     });
                                     wardStateInfo.Alerts.Add(new Alert()
                                     {
                                         Bed = bed.Name,
-                                        Message = "PreAlarm",
+                                        Message = pump.AlertMessage,
+                                        Medicament = pump.Medicament,
+                                        Type = pump.Type,
                                         State = pump.CurrentState
                                     });
                                     if (bedInfo.State != stateAlarm)
@@ -111,7 +115,9 @@ namespace Alarmee.WardManager
                                     wardStateInfo.Alerts.Add(new Alert()
                                     {
                                         Bed = bed.Name,
-                                        Message = "Alarm",
+                                        Message = pump.AlertMessage,
+                                        Medicament = pump.Medicament,
+                                        Type = pump.Type,
                                         State = pump.CurrentState
                                     });
                                     bedInfo.State = stateAlarm;

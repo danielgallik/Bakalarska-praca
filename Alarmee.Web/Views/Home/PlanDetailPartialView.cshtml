@@ -2,7 +2,7 @@
 
 <div class="hospitalPlan">
     <div class="infoPlan">
-        <canvas id="planCanvas" width="800" height="600"></canvas>
+        <canvas id="planCanvas" width="780" height="700"></canvas>
     </div>
 
     @foreach (var bed in Model.Beds)
@@ -37,7 +37,7 @@
             context.lineTo(@room.Vertices[0].X, @room.Vertices[0].Y);
             context.stroke();
 
-            context.font = '20pt Calibri';
+            context.font = 'bold 20pt Calibri';
             context.fillStyle = @Html.Raw(Json.Encode(room.Color));
             context.fillText(@Html.Raw(Json.Encode(room.Name)), @room.NamePosition.X, @room.NamePosition.Y);
         </script>
@@ -51,7 +51,8 @@
                     <div class="pump">
                         <span class="pumpBed">Bed</span>
                         <span class="pumpRemTime">Rem.Time</span>
-                        <span class="pumpInfo">Medication & Pump Type</span>
+                        <span class="pumpInfo">Medication</span>
+                        <span class="pumpType">Type</span>
                     </div>
                 </div>
                 <div class="pumpListBody">
@@ -61,7 +62,8 @@
                             <span class="pumpBed">@pump.Bed</span>
                             <span class="pumpRemTime">@pump.RemainingTime</span>
                             <span class="pumpInfo">@pump.Medicament</span>
-                            <div class="pumpProgress"><span style="display:block;color:@pump.ProgressColor;background-color:@pump.ProgressColor;width:@pump.Progress%;">.</span></div>
+                            <span class="pumpType">@pump.Type</span>
+                            <div class="pumpProgress"><span style="display:block;color:white;background-color:@pump.ProgressColor;width:@pump.Progress%;">.</span></div>
                         </div>
                     }
                 </div>
@@ -70,15 +72,21 @@
         <div id="alertBox" class="infoBox">
             <h2>Alerts</h2>
             <hr />
-            <div id="alertList">
-                @foreach (var alert in @Model.Alerts)
-                {
-                    <div class="alert" style="background-color:@alert.Color;">
-                        <span class="alertBed">@alert.Bed</span>
-                        <span class="alertMessage">@alert.Message</span>
-                    </div>
-                }
-            </div>
+            <table id="alertList">
+                <tbody>
+                    @foreach (var alert in @Model.Alerts)
+                    {
+                        <tr class="alert" style="background-color:@alert.Color;">
+                            <td class="alertBed"><b>@alert.Bed</b></td>
+                            <td class="alertMessage">
+                                <b>@alert.Message</b><br />
+                                <i>@alert.Medicament</i>
+                            </td>
+                            <td class="alertType">@alert.Type</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
