@@ -44,7 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Plans.xml" />
+    <Content Include="Plans.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alarmee.WardPlan.Contract\Alarmee.WardPlan.Contract.csproj">

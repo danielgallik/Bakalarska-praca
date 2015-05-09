@@ -26,3 +26,4 @@ D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardPlan.
 D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardPlan.pdb
 D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardPlan.Contract.dll
 D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Alarmee.WardPlan.Contract.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.ConsoleServer\bin\Debug\Plans.xml

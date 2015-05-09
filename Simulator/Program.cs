@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Configuration;
 using System.ServiceModel;
 
 namespace Simulator
 {
     class Program
     {
-        private static string activePump = "";
+        private static string ActivePump = "";
+        private static string DefaultIpAddress = ConfigurationManager.AppSettings["DefaultIpAddress"];
 
         static void Main(string[] args)
         {
             var serviceHost = new ServiceHost(typeof(PumpDataAccess));
 			serviceHost.Open();
 
-			Console.WriteLine("Service started.");
+			Console.WriteLine("Service started");
 			
 			writeHelp();
 
@@ -28,7 +30,7 @@ namespace Simulator
 
 					if (tokens.Length < 2 )
 					{
-						Console.WriteLine("Invalid command syntax. Serial number expected.");
+						Console.WriteLine("Invalid command syntax. Serial number expected");
 						writeHelp();
 						continue;
                     }
@@ -41,8 +43,9 @@ namespace Simulator
                     {
                         adminClient.AddPump(tokens[1], tokens[2]);
                     }
-                    adminClient.ConnectToIpAddress(tokens[1], "192.168.1.1");
-					adminClient.Close();
+                    adminClient.ConnectToIpAddress(tokens[1], DefaultIpAddress);
+                    adminClient.Close();
+                    Console.WriteLine("Pump added");
                 }
                 else if (commandLine.StartsWith("l") || commandLine.Equals("list"))         // list pumps
                 {
@@ -53,8 +56,8 @@ namespace Simulator
                     Console.WriteLine("Available pumps:");
                     for (int i = 0; i < allPumps.Count; i++)
                     {
-                        string pumpInfo = string.Format("{0} {1} {2} {3} {4}", i, allPumps[i].SerialNumber, allPumps[i].IpAddress, allPumps[i].CurrentState, allPumps[i].Medicament, allPumps[i].RemainingTime);
-                        if (allPumps[i].SerialNumber == activePump)
+                        string pumpInfo = string.Format("Serial:{0} IP:{1} State:{2} Medicament:{3} Rem.Time:{4}", allPumps[i].SerialNumber, allPumps[i].IpAddress, allPumps[i].CurrentState, allPumps[i].Medicament, allPumps[i].RemainingTime);
+                        if (allPumps[i].SerialNumber == ActivePump)
                             pumpInfo += " active";
                         Console.WriteLine(pumpInfo);
                     }
@@ -65,7 +68,7 @@ namespace Simulator
 
                     if (tokens.Length != 2)
                     {
-                        Console.WriteLine("Invalid command syntax. Pump number expected.");
+                        Console.WriteLine("Invalid command syntax. Pump number expected");
                         writeHelp();
                         continue;
                     }
@@ -74,39 +77,58 @@ namespace Simulator
                     var allPumps = adminClient.GetAllPumps();
                     adminClient.Close();
                     
-                    activePump = "";
-                    int pumpNumber = Convert.ToInt16(tokens[1]);
-
-                    if (pumpNumber >= 0 && pumpNumber < allPumps.Count)
+                    ActivePump = "";
+                    foreach (var pump in allPumps)
                     {
-                        activePump = allPumps[pumpNumber].SerialNumber;
-                        Console.WriteLine("Active pump " + pumpNumber);
+                        if (tokens[1] == pump.SerialNumber)
+                        {
+                            ActivePump = pump.SerialNumber;
+                        }
+                    }
+
+                    if (ActivePump != "")
+                    {
+                        Console.WriteLine("Active pump " + ActivePump);
                         writeHelp();
                     }
                     else
-                        Console.WriteLine("Pump number is out of range.");
+                    {
+                        Console.WriteLine("Serial number not exist");
+                    }
                 }
-                else if (commandLine.Equals("on") && activePump != "")                      // turn on pump
+                else if (commandLine.Equals("on") && ActivePump != "")                      // turn on pump
                 {
                     var adminClient = new AdminPumpDataAccessClient();
-                    if (!adminClient.TurnOn(activePump))
-                        Console.WriteLine("Cannot turn on pump.");
+                    if (!adminClient.TurnOn(ActivePump))
+                    {
+                        Console.WriteLine("Cannot turn on pump");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pump on");
+                    }
                     adminClient.Close();
                 }
-                else if (commandLine.Equals("off") && activePump != "")                     // turn off pump
+                else if (commandLine.Equals("off") && ActivePump != "")                     // turn off pump
                 {
                     var adminClient = new AdminPumpDataAccessClient();
-                    if (!adminClient.TurnOff(activePump))
-                        Console.WriteLine("Cannot turn off pump.");
+                    if (!adminClient.TurnOff(ActivePump))
+                    {
+                        Console.WriteLine("Cannot turn off pump");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pump off");
+                    }
                     adminClient.Close();
                 }
-                else if (commandLine.StartsWith("set") && activePump != "")                 // set pump
+                else if (commandLine.StartsWith("set") && ActivePump != "")                 // set pump
                 {
                     string[] tokens = commandLine.Split(' ');
 
                     if (tokens.Length < 4)
                     {
-                        Console.WriteLine("Invalid command syntax. Rate, volume and medicament expected.");
+                        Console.WriteLine("Invalid command syntax. Rate, volume and medicament expected");
                         writeHelp();
                         continue;
                     }
@@ -116,56 +138,81 @@ namespace Simulator
                         medicament += " " + tokens[i];
                     }
                     var adminClient = new AdminPumpDataAccessClient();
-                    if (!adminClient.SetInfusionParams(activePump, Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2]), medicament.Trim()))
-                        Console.WriteLine("Cannot set pump.");
+                    if (!adminClient.SetInfusionParams(ActivePump, Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2]), medicament.Trim()))
+                    {
+                        Console.WriteLine("Cannot set pump");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pump set");
+                    }
                     adminClient.Close();
                 }
-                else if (commandLine.Equals("start") && activePump != "")                   // start infusion
+                else if (commandLine.Equals("start") && ActivePump != "")                   // start infusion
                 {
                     var adminClient = new AdminPumpDataAccessClient();
-                    if (!adminClient.StartInfusion(activePump))
-                        Console.WriteLine("Cannot start infusion.");
+                    if (!adminClient.StartInfusion(ActivePump))
+                    {
+                        Console.WriteLine("Cannot start infusion");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pump start");
+                    }
                     adminClient.Close();
                 }
-                else if (commandLine.Equals("stop") && activePump != "")                    // stop infusion
+                else if (commandLine.Equals("stop") && ActivePump != "")                    // stop infusion
                 {
                     var adminClient = new AdminPumpDataAccessClient();
-                    if (!adminClient.StopInfusion(activePump))
-                        Console.WriteLine("Cannot stop infusion.");
+                    if (!adminClient.StopInfusion(ActivePump))
+                    {
+                        Console.WriteLine("Cannot stop infusion");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pump stop");
+                    }
                     adminClient.Close();
                 }
-                else if (commandLine.Equals("accept") && activePump != "")                  // acknowledge alert
+                else if (commandLine.Equals("accept") && ActivePump != "")                  // acknowledge alert
                 {
                     var adminClient = new AdminPumpDataAccessClient();
-                    if (!adminClient.AcknowledgeAlert(activePump))
-                        Console.WriteLine("Cannot acknowledge alert.");
+                    if (!adminClient.AcknowledgeAlert(ActivePump))
+                    {
+                        Console.WriteLine("Cannot acknowledge alert");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pump stop");
+                    }
                     adminClient.Close();
                 }
-                else if (commandLine.StartsWith("connect") && activePump != "")                  // connect to other bed
+                else if (commandLine.StartsWith("connect") && ActivePump != "")                  // connect to other bed
                 {
                     string[] tokens = commandLine.Split(' ');
 
                     if (tokens.Length != 2)
                     {
-                        Console.WriteLine("Invalid command syntax. Ip address expected.");
+                        Console.WriteLine("Invalid command syntax. Ip address expected");
                         writeHelp();
                         continue;
                     }
 
                     var adminClient = new AdminPumpDataAccessClient();
-                    adminClient.ConnectToIpAddress(activePump, tokens[1]);
+                    adminClient.ConnectToIpAddress(ActivePump, tokens[1]);
                     adminClient.Close();
+                    Console.WriteLine("Pump connected to " + tokens[1]);
                 }
-                else if ((commandLine.StartsWith("i") || commandLine.Equals("info")) && activePump != "")   // get info of selected pump
+                else if ((commandLine.StartsWith("i") || commandLine.Equals("info")) && ActivePump != "")   // get info of selected pump
                 {
                     var adminClient = new AdminPumpDataAccessClient();
-                    var pump = adminClient.GetPump(activePump);
+                    var pump = adminClient.GetPump(ActivePump);
                     adminClient.Close();
 
                     if (pump != null)
-                        Console.WriteLine(string.Format("{0} {1} {2} {3} {4}", pump.SerialNumber, pump.IpAddress, pump.CurrentState, pump.Medicament, pump.RemainingTime));
+                        Console.WriteLine(string.Format("Serial:{0} IP:{1} State:{2} Medicament:{3} Rem.Time:{4}", pump.SerialNumber, pump.IpAddress, pump.CurrentState, pump.Medicament, pump.RemainingTime));
                     else
-                        Console.WriteLine("Pump not found.");
+                        Console.WriteLine("Pump not found");
                 }
                 else if (commandLine.StartsWith("e") || commandLine.Equals("exit"))         // exit program
                 {
@@ -188,8 +235,8 @@ namespace Simulator
             Console.WriteLine("Available commands:");
             Console.WriteLine("   add <serial_number> {infusion,injection}");
             Console.WriteLine("   list");
-            Console.WriteLine("   select <pump_number>");
-            if (activePump != "")
+            Console.WriteLine("   select <serial_number>");
+            if (ActivePump != "")
             {
                 Console.WriteLine("   on");
                 Console.WriteLine("   off");

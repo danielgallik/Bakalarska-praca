@@ -25,7 +25,7 @@ namespace Alarmee.Web.Controllers
         public ActionResult Index()
         {
             var client = new WardManagerClient();
-            Dictionary<string, string> wardPlan = client.getWardPlan();
+            Dictionary<string, string> wardPlan = client.GetWardPlans();
             client.Close();
             return View(wardPlan);
         }
@@ -35,8 +35,8 @@ namespace Alarmee.Web.Controllers
             return View(GetModel(id));
         }
 
-        [HttpPost]
-        public ActionResult Update(string id = "")
+        [HttpGet]
+        public ActionResult GetPlan(string id = "")
         {
             return PartialView("PlanDetailPartialView", GetModel(id));
         }

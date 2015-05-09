@@ -116,12 +116,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ColorConverter.cs" />
+    <Compile Include="Models\ImageConverter.cs" />
     <Compile Include="Models\PlanDetailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\drop-white.png" />
+    <Content Include="Content\Image\drop.png" />
+    <Content Include="Content\Image\injection-white.png" />
+    <Content Include="Content\Image\injection.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

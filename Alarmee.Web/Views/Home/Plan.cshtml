@@ -12,15 +12,12 @@
 
 <script>
     $(document).ready(function () {
-        var model = new Object();
-        model.Id = "@Model.Id";
         window.setInterval(function () {
             $.ajax({
-                type: "POST",
-                url: "@Url.Action("Update")",
+                type: "GET",
+                url: "/Home/GetPlan/@Model.Id",
                 dataType: "html",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ id: model.Id })
+                contentType: "application/json; charset=utf-8"
             }).done(function (partialViewResult) {
                 $("#PlanDetail").html(partialViewResult);
             }).fail(function (xhr, status, error) {

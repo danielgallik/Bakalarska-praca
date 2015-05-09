@@ -7,10 +7,10 @@ namespace Alarmee.WardManager
 {
 	public class WardManager : IWardManager
 	{
-        public Dictionary<string, string> getWardPlan()
+        public Dictionary<string, string> GetWardPlans()
         {
             var client = new PlanDataAccessClient();
-            var planList = client.getPlanList();
+            var planList = client.GetPlanList();
             client.Close();
 
             return planList;
@@ -27,7 +27,7 @@ namespace Alarmee.WardManager
 			pumpDataAccessClient.Close();
 
             var client = new PlanDataAccessClient();
-            var plan = client.getPlan(id);
+            var plan = client.GetPlan(id);
             client.Close();
 
 			// transform the data

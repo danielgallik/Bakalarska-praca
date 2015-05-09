@@ -101,14 +101,14 @@ namespace Simulator
             {
                 PumpDto pumpDto = new PumpDto()
                 {
-                    SerialNumber = pump.SerialNumber,
-                    Medicament = pump.Medicament,
-                    CurrentState = pump.CurrentState,
-                    Type = pump.TypePump,
-                    TotalTime = pump.TotalTime,
-                    RemainingTime = pump.RemainingTime,
-                    IpAddress = pump.IpAddress,
-                    AlertMessage = pump.AlertMessage
+                    SerialNumber = pump.GetSerialNumber,
+                    Medicament = pump.GetMedicament,
+                    CurrentState = pump.GetCurrentState,
+                    Type = pump.GetTypePump,
+                    TotalTime = pump.GetTotalTime,
+                    RemainingTime = pump.GetRemainingTime,
+                    IpAddress = pump.GetIpAddress,
+                    AlertMessage = pump.GetAlertMessage
                 };
                 return pumpDto;
             }
@@ -119,14 +119,14 @@ namespace Simulator
         {
             return myPumps.Select(x => new PumpDto
             {
-                SerialNumber = x.Value.SerialNumber,
-                Medicament = x.Value.Medicament,
-                CurrentState = x.Value.CurrentState,
-                Type = x.Value.TypePump,
-                TotalTime = x.Value.TotalTime,
-                RemainingTime = x.Value.RemainingTime,
-                IpAddress = x.Value.IpAddress,
-                AlertMessage = x.Value.AlertMessage
+                SerialNumber = x.Value.GetSerialNumber,
+                Medicament = x.Value.GetMedicament,
+                CurrentState = x.Value.GetCurrentState,
+                Type = x.Value.GetTypePump,
+                TotalTime = x.Value.GetTotalTime,
+                RemainingTime = x.Value.GetRemainingTime,
+                IpAddress = x.Value.GetIpAddress,
+                AlertMessage = x.Value.GetAlertMessage
             }).ToList();
         }
     }

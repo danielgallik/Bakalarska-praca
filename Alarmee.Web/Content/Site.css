@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: wf_segoe-ui_light,"Segoe UI Light","Segoe WP Light","Segoe UI","Segoe WP",Tahoma,Arial,sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,6 +22,16 @@ input,
 select,
 textarea {
     max-width: 500px;
+}
+
+h1{
+    font-weight:800;
+    font-family: wf_segoe-ui_light,"Segoe UI Light","Segoe WP Light","Segoe UI","Segoe WP",Tahoma,Arial,sans-serif;
+}
+
+h2{
+    font-weight:800;
+    font-family: wf_segoe-ui_light,"Segoe UI Light","Segoe WP Light","Segoe UI","Segoe WP",Tahoma,Arial,sans-serif;
 }
 
 .planList{
@@ -112,6 +123,7 @@ textarea {
 }
 
 #pumpList .pumpType{
+    text-align:center;
     float:left;
     width:10%;
 }
@@ -130,8 +142,8 @@ textarea {
 #alertList .alert{
     color:white;
     display:block;
-    margin:5px;
-    padding:5px;
+    margin:1%;
+    padding:2%;
 }
 
 #alertList .alertBed{
@@ -140,11 +152,12 @@ textarea {
 }
 
 #alertList .alertMessage{
-    width:60%;
+    width:65%;
     display:inline-block;
 }
 
 #alertList .alertType{
-    width:10%;
+    width:12%;
     display:inline-block;
+    text-align:center;
 }

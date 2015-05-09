@@ -5,9 +5,9 @@ namespace Alarmee.WardManager.Contracts
 {
 	public class WardManagerClient : ClientBase<IWardManager>, IWardManager
     {
-        public Dictionary<string, string> getWardPlan()
+        public Dictionary<string, string> GetWardPlans()
         {
-            return Channel.getWardPlan();
+            return Channel.GetWardPlans();
         }
 
         public WardStateInfo GetWardState(string id)

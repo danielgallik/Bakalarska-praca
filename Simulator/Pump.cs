@@ -7,14 +7,14 @@ namespace Simulator
 {
     class Pump
     {
-        public string SerialNumber { get; private set; }
-        public string Medicament { get; private set; }
-        public string IpAddress { get; private set; }
-        public string AlertMessage { get; private set; }
-        public string CurrentState { get { return MyCurrentState.ToString(); } }
-        public string TypePump { get { return MyType.ToString(); } }
-        public int TotalTime { get { return Convert.ToInt32(MyTotalTime); } }
-        public int RemainingTime { get { return Convert.ToInt32(MyRemainingTime); } }
+        public string GetSerialNumber { get { return MySerialNumber; } }
+        public string GetMedicament { get { return MyMedicament; } }
+        public string GetIpAddress { get { return MyIpAddress; } }
+        public string GetAlertMessage { get { return MyAlertMessage; } }
+        public string GetCurrentState { get { return MyCurrentState.ToString(); } }
+        public string GetTypePump { get { return MyType.ToString(); } }
+        public int GetTotalTime { get { return Convert.ToInt32(MyTotalTime); } }
+        public int GetRemainingTime { get { return Convert.ToInt32(MyRemainingTime); } }
 
         private double MyRate { get; set; }                   // ml/h
 
@@ -27,6 +27,10 @@ namespace Simulator
         private double MyRemainingVolume { get; set; }       // ml
         private double MyRemainingTime { get; set; }         // s
 
+        private string MySerialNumber { get; set; }
+        private string MyMedicament { get; set; }
+        private string MyIpAddress { get; set; }
+        private string MyAlertMessage { get; set; }
         private object MyPumpLock;
         private Timer MyTimer;
         private Dictionary<Transition, State> MyTransitions;
@@ -47,8 +51,8 @@ namespace Simulator
                 MyType = Type.Infusion;
             }
             MyPumpLock = new object();
-            SerialNumber = serialNumber;
-            AlertMessage = "";
+            MySerialNumber = serialNumber;
+            MyAlertMessage = "";
             MyTransitions = new Dictionary<Transition, State>
             {
                 { new Transition(State.Off, Command.TurnOn), State.Stop },
@@ -74,7 +78,7 @@ namespace Simulator
             MyInfusedVolume = 0;
             MyRemainingTime = 0;
             MyRemainingVolume = 0;
-            Medicament = "";
+            MyMedicament = "";
             MyTimer = new Timer();
             MyTimer.Elapsed += new ElapsedEventHandler(ElapsedTimer);
             MyTimer.Interval = 1000;
@@ -101,7 +105,7 @@ namespace Simulator
                 MyInfusedVolume = 0;
                 MyRemainingTime = MyTotalTime;
                 MyRemainingVolume = MyTotalVolume;
-                Medicament = medicament;
+                MyMedicament = medicament;
                 return true;
             }
             return false;
@@ -138,13 +142,13 @@ namespace Simulator
             {
                 return false;
             }
-            AlertMessage = "";
+            MyAlertMessage = "";
             return true;
         }
 
         public void ConnectToIpAddress(string ipAddress)
         {
-            IpAddress = ipAddress;
+            MyIpAddress = ipAddress;
         }
 
         private void ElapsedTimer(object sender, ElapsedEventArgs e)
@@ -155,12 +159,12 @@ namespace Simulator
                 if (MyCurrentState == State.Running && MyRemainingTime <= MyPrealarmStartTime)
                 {
                     MoveNext(Command.Warning);
-                    AlertMessage = "The infusion is near end";
+                    MyAlertMessage = "The infusion is near end";
                 }
                 if (MyRemainingTime <= 0 || MyRemainingVolume <= 0)
                 {
                     MoveNext(Command.Error);
-                    AlertMessage = "The infusion ended";
+                    MyAlertMessage = "The infusion ended";
                 }
 
                 switch (MyCurrentState)
@@ -178,7 +182,7 @@ namespace Simulator
                             if (!myAlarm.Used && MyRemainingTime / MyTotalTime <= myAlarm.ProgressPosition)
                             {
                                 myAlarm.Used = true;
-                                AlertMessage = myAlarm.Message;
+                                MyAlertMessage = myAlarm.Message;
                                 MoveNext(Command.Error);
                             }
                         }

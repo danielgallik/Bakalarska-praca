@@ -7,9 +7,9 @@ namespace Alarmee.WardPlan.Contract
     public interface IPlanDataAccess
     {
         [OperationContract]
-        Dictionary<string, string> getPlanList();
+        Dictionary<string, string> GetPlanList();
 
         [OperationContract]
-        Plan getPlan(string id);
+        Plan GetPlan(string id);
     }
 }

@@ -8,8 +8,8 @@ namespace Alarmee.Web.Models
 {
     public class PlanDetailModel
     {
-        public string Id;
-        public string Name;
+        public string Id { get; set; }
+        public string Name { get; set; }
 
         public List<CanvasItem> Rooms;
         public List<CanvasItem> Beds;
@@ -24,36 +24,39 @@ namespace Alarmee.Web.Models
             Pumps = new List<PumpListItem>();
             Alerts = new List<AlertListItem>();
 
+            ColorConverter colorConverter = new ColorConverter();
+            ImageConverter imageConvert = new ImageConverter();
+
             wardState.Rooms.ForEach(r => Rooms.Add(new CanvasItem() 
             { 
                 Name = r.Name, 
                 NamePosition = new Point(){ X = r.NamePosition.X, Y = r.NamePosition.Y },
                 Vertices = r.Vertices,
-                Color = stateToRoomColor(r.State)
+                Color = colorConverter.StateToRoomColor(r.State)
             }));
             wardState.Beds.ForEach(b => Beds.Add(new CanvasItem() 
             { 
                 Name = b.Name,
                 NamePosition = b.NamePosition,
                 Vertices = b.Vertices,
-                Color = stateToColor(b.State)
+                Color = colorConverter.StateToColor(b.State)
             }));
             wardState.Pumps.ForEach(p => Pumps.Add(new PumpListItem()
             {
                 Bed = p.Bed,
                 RemainingTime = p.RemainingTime,
                 Medicament = p.Medicament,
-                Type = p.Type,
+                Type = imageConvert.TypeToImage(p.Type),
                 Progress = p.Progress,
-                ProgressColor = stateToColor(p.State)
+                ProgressColor = colorConverter.StateToColor(p.State)
             }));
             wardState.Alerts.ForEach(a => Alerts.Add(new AlertListItem()
             {
                 Bed = a.Bed,
                 Message = a.Message,
                 Medicament = a.Medicament,
-                Type = a.Type,
-                Color = stateToColor(a.State)
+                Type = imageConvert.TypeToWhiteImage(a.Type),
+                Color = colorConverter.StateToColor(a.State)
             })); 
         }
 
@@ -87,34 +90,6 @@ namespace Alarmee.Web.Models
             public string Medicament { get; set; }
             public string Type { set; get; }
             public string Color { get; set; }
-        }
-
-        private string stateToColor(string state)
-        {
-            switch (state)
-            {
-                case "Running":
-                    return "rgb(0, 155, 107)";
-                case "PreAlarm":
-                    return "rgb(238, 116, 0)";
-                case "Alarm":
-                    return "rgb(200, 0, 0)";
-                default:
-                    return "gray";
-            }
-        }
-
-        private string stateToRoomColor(string state)
-        {
-            switch (state)
-            {
-                case "PreAlarm":
-                    return "rgb(238, 116, 0)";
-                case "Alarm":
-                    return "rgb(200, 0, 0)";
-                default:
-                    return "gray";
-            }
         }
     }
 }

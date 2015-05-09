@@ -6,14 +6,14 @@ namespace Alarmee.WardPlan.Contract
 {
     public class PlanDataAccessClient : ClientBase<IPlanDataAccess>, IPlanDataAccess
     {
-        public Dictionary<string, string> getPlanList()
+        public Dictionary<string, string> GetPlanList()
         {
-            return Channel.getPlanList();
+            return Channel.GetPlanList();
         }
 
-        public Plan getPlan(string id)
+        public Plan GetPlan(string id)
         {
-            return Channel.getPlan(id);
+            return Channel.GetPlan(id);
         }
     }
 }

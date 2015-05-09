@@ -16,7 +16,7 @@ namespace Alarmee.WardPlan
         {
             try
             {
-                document.Load("D:/Dropbox/C#/Bakalarska praca/Alarmee.WardPlan/Plans.xml");
+                document.Load("Plans.xml");
             }
             catch
             {
@@ -24,7 +24,7 @@ namespace Alarmee.WardPlan
             }
         }
 
-        public Dictionary<string, string> getPlanList()
+        public Dictionary<string, string> GetPlanList()
         {
             Dictionary<string, string> planList = new Dictionary<string, string>();
             if (document != null)
@@ -38,7 +38,7 @@ namespace Alarmee.WardPlan
             return planList;
         }
 
-        public Plan getPlan(string id)
+        public Plan GetPlan(string id)
         {
             Plan plan = new Plan();
             if (document != null)
