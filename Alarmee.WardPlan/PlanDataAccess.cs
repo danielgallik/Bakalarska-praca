@@ -10,105 +10,109 @@ namespace Alarmee.WardPlan
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class PlanDataAccess : IPlanDataAccess
     {
-        XmlDocument document = new XmlDocument();
-
-        public PlanDataAccess()
+        public Dictionary<string, string> GetPlanList()
         {
             try
             {
+                XmlDocument document = new XmlDocument();
                 document.Load("Plans.xml");
-            }
-            catch
-            {
-                document = null;
-            }
-        }
-
-        public Dictionary<string, string> GetPlanList()
-        {
-            Dictionary<string, string> planList = new Dictionary<string, string>();
-            if (document != null)
-            {
                 XmlNodeList nodePlanList = document.GetElementsByTagName("Plan");
+
+                Dictionary<string, string> planList = new Dictionary<string, string>();
                 foreach (XmlNode nodePlan in nodePlanList)
                 {
                     planList[nodePlan.Attributes["Id"].Value] = nodePlan.Attributes["Name"].Value;
                 }
+                return planList;
             }
-            return planList;
+            catch
+            {
+                return null;
+            }
         }
 
         public Plan GetPlan(string id)
         {
-            Plan plan = new Plan();
-            if (document != null)
+            try
             {
+                XmlDocument document = new XmlDocument();
+                document.Load("Plans.xml");
+                Plan plan = new Plan();
+                plan.Id = id;
                 XmlNode nodePlan = document.SelectSingleNode("/Plans/Plan[@Id='" + id + "']");
                 if (nodePlan != null)
                 {
                     plan.Name = nodePlan.Attributes["Name"].Value;
 
-                    foreach(XmlNode nodePlanChild in nodePlan.ChildNodes)
+                    foreach (XmlNode nodePlanChild in nodePlan.ChildNodes)
                     {
                         if (nodePlanChild.Name == "Room")
                         {
-                            Plan.Room room = new Plan.Room();
-
-                            foreach (XmlNode nodeRoom in nodePlanChild.ChildNodes)
-                            {
-                                switch (nodeRoom.Name)
-                                {
-                                    case "Name":
-                                        room.Name = nodeRoom.InnerText;
-                                        room.NamePosition = new Plan.Point()
-                                        {
-                                            X = Convert.ToInt32(nodeRoom.Attributes["X"].Value),
-                                            Y = Convert.ToInt32(nodeRoom.Attributes["Y"].Value)
-                                        };
-                                        break;
-                                    case "Vertex":
-                                        room.Vertices.Add(new Plan.Point()
-                                        {
-                                            X = Convert.ToInt32(nodeRoom.Attributes["X"].Value),
-                                            Y = Convert.ToInt32(nodeRoom.Attributes["Y"].Value)
-                                        });
-                                        break;
-                                    case "Bed":
-                                        Plan.Bed bed = new Plan.Bed();
-                                        foreach (XmlNode nodeBed in nodeRoom.ChildNodes)
-                                        {
-                                            switch (nodeBed.Name)
-                                            {
-                                                case "Name":
-                                                    bed.Name = nodeBed.InnerText;
-                                                    bed.NamePosition = new Plan.Point()
-                                                    {
-                                                        X = Convert.ToInt32(nodeBed.Attributes["X"].Value),
-                                                        Y = Convert.ToInt32(nodeBed.Attributes["Y"].Value)
-                                                    };
-                                                    break;
-                                                case "IpAddress":
-                                                    bed.IpAddresses.Add(nodeBed.InnerText);
-                                                    break;
-                                                case "Vertex":
-                                                    bed.Vertices.Add(new Plan.Point()
-                                                    {
-                                                        X = Convert.ToInt32(nodeBed.Attributes["X"].Value),
-                                                        Y = Convert.ToInt32(nodeBed.Attributes["Y"].Value)
-                                                    });
-                                                    break;
-                                            }
-                                        }
-                                        room.Beds.Add(bed);
-                                        break;
-                                }
-                            }
-                            plan.Rooms.Add(room);
+                            plan.Rooms.Add(GetRoom(nodePlanChild));
                         }
                     }
                 }
+                return plan;
             }
-            return plan;
+            catch
+            {
+                return null;
+            }
+        }
+
+        private Plan.Room GetRoom(XmlNode nodeRoom)
+        {
+            Plan.Room room = new Plan.Room();
+
+            foreach (XmlNode nodeRoomChild in nodeRoom.ChildNodes)
+            {
+                switch (nodeRoomChild.Name)
+                {
+                    case "Name":
+                        room.Name = nodeRoomChild.InnerText;
+                        room.NamePosition = GetPoint(nodeRoomChild);
+                        break;
+                    case "Vertex":
+                        room.Vertices.Add(GetPoint(nodeRoomChild));
+                        break;
+                    case "Bed":
+
+                        room.Beds.Add(GetBed(nodeRoomChild));
+                        break;
+                }
+            }
+            return room;
+        }
+
+        private Plan.Bed GetBed(XmlNode nodeBed)
+        {
+            Plan.Bed bed = new Plan.Bed();
+            foreach (XmlNode nodeBedChild in nodeBed.ChildNodes)
+            {
+                switch (nodeBedChild.Name)
+                {
+                    case "Name":
+                        bed.Name = nodeBedChild.InnerText;
+                        bed.NamePosition = GetPoint(nodeBedChild);
+                        break;
+                    case "IpAddress":
+                        bed.IpAddresses.Add(nodeBedChild.InnerText);
+                        break;
+                    case "Vertex":
+                        bed.Vertices.Add(GetPoint(nodeBedChild));
+                        break;
+                }
+            }
+            return bed;
+        }
+
+        private Plan.Point GetPoint(XmlNode nodePoint)
+        {
+            return new Plan.Point() 
+            {
+                X = Convert.ToInt32(nodePoint.Attributes["X"].Value),
+                Y = Convert.ToInt32(nodePoint.Attributes["Y"].Value)
+            };
         }
     }
 }

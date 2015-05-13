@@ -13,28 +13,36 @@ namespace Alarmee.WardManager
         static string statePreAlarm = "PreAlarm";
         static string stateAlarm = "Alarm";
 
-        public WardStateInfo getWardStateInfo(Plan plan, List<PumpDto> pumps)
+        public WardStateInfo GetWardStateInfoWithError(string id)
         {
-            Dictionary<string,List<PumpDto>> pumpIpAddresses = new Dictionary<string,List<PumpDto>>();
-            foreach(PumpDto pump in pumps){
-                if(!pumpIpAddresses.ContainsKey(pump.IpAddress)){
-                    pumpIpAddresses[pump.IpAddress] = new List<PumpDto>();
-                }
-                pumpIpAddresses[pump.IpAddress].Add(pump);
-            }
-
-
             WardStateInfo wardStateInfo = new WardStateInfo();
+            wardStateInfo.Id = id;
+            wardStateInfo.Name = "NaN";
+            wardStateInfo.SuccessLoad = false;
+            wardStateInfo.ErrorMessage = "Cannot load plan. <br /><br /> Please contact your IT administrator.";
+
+            return wardStateInfo;
+        }
+
+        public WardStateInfo GetWardStateInfo(Plan plan, Dictionary<string, List<PumpDto>> pumpDictionary)
+        {            
+            WardStateInfo wardStateInfo = new WardStateInfo();
+            wardStateInfo.Id = plan.Id;
+            wardStateInfo.Name = plan.Name;
+            wardStateInfo.SuccessLoad = true;
+            wardStateInfo.ErrorMessage = "";
+
             foreach (Plan.Room room in plan.Rooms)
             {
-                Room roomInfo = new Room();
+                WardStateInfo.Room roomInfo = new WardStateInfo.Room();
                 roomInfo.Name = room.Name;
-                roomInfo.NamePosition = new Point()
+                roomInfo.NamePosition = new WardStateInfo.Point()
                 {
                     X = room.NamePosition.X,
                     Y = room.NamePosition.Y
                 };
-                room.Vertices.ForEach(v => roomInfo.Vertices.Add(new Point(){
+                room.Vertices.ForEach(v => roomInfo.Vertices.Add(new WardStateInfo.Point()
+                {
                     X = v.X,
                     Y = v.Y
                 }));
@@ -42,14 +50,14 @@ namespace Alarmee.WardManager
 
                 foreach (Plan.Bed bed in room.Beds)
                 {
-                    Bed bedInfo = new Bed();
+                    WardStateInfo.Bed bedInfo = new WardStateInfo.Bed();
                     bedInfo.Name = bed.Name;
-                    bedInfo.NamePosition = new Point()
+                    bedInfo.NamePosition = new WardStateInfo.Point()
                     {
                         X = bed.NamePosition.X,
                         Y = bed.NamePosition.Y
                     };
-                    bed.Vertices.ForEach(v => bedInfo.Vertices.Add(new Point()
+                    bed.Vertices.ForEach(v => bedInfo.Vertices.Add(new WardStateInfo.Point()
                     {
                         X = v.X,
                         Y = v.Y
@@ -58,19 +66,19 @@ namespace Alarmee.WardManager
 
                     foreach (string ipAddress in bed.IpAddresses)
                     {
-                        if (pumpIpAddresses.ContainsKey(ipAddress))
+                        if (pumpDictionary.ContainsKey(ipAddress))
                         {
-                            foreach (PumpDto pump in pumpIpAddresses[ipAddress])
+                            foreach (PumpDto pump in pumpDictionary[ipAddress])
                             {
                                 if (pump.CurrentState == stateRunning)
                                 {
-                                    wardStateInfo.Pumps.Add(new Pump()
+                                    wardStateInfo.Pumps.Add(new WardStateInfo.Pump()
                                     {
                                         Bed = bed.Name,
                                         Medicament = pump.Medicament,
-                                        Progress = calculateRemainingTimeProgress(pump),
+                                        Progress = CalculateRemainingTimeProgress(pump),
                                         Type = pump.Type,
-                                        RemainingTime = formatRemainingTime(pump),
+                                        RemainingTime = FormatRemainingTime(pump),
                                         State = pump.CurrentState
                                     });
                                     if (bedInfo.State == stateInitial)
@@ -84,16 +92,16 @@ namespace Alarmee.WardManager
                                 }
                                 else if (pump.CurrentState == statePreAlarm)
                                 {
-                                    wardStateInfo.Pumps.Add(new Pump()
+                                    wardStateInfo.Pumps.Add(new WardStateInfo.Pump()
                                     {
                                         Bed = bed.Name,
                                         Medicament = pump.Medicament,
-                                        Progress = calculateRemainingTimeProgress(pump),
+                                        Progress = CalculateRemainingTimeProgress(pump),
                                         Type = pump.Type,
-                                        RemainingTime = formatRemainingTime(pump),
+                                        RemainingTime = FormatRemainingTime(pump),
                                         State = pump.CurrentState
                                     });
-                                    wardStateInfo.Alerts.Add(new Alert()
+                                    wardStateInfo.Alerts.Add(new WardStateInfo.Alert()
                                     {
                                         Bed = bed.Name,
                                         Message = pump.AlertMessage,
@@ -112,7 +120,7 @@ namespace Alarmee.WardManager
                                 }
                                 else if (pump.CurrentState == stateAlarm)
                                 {
-                                    wardStateInfo.Alerts.Add(new Alert()
+                                    wardStateInfo.Alerts.Add(new WardStateInfo.Alert()
                                     {
                                         Bed = bed.Name,
                                         Message = pump.AlertMessage,
@@ -133,12 +141,12 @@ namespace Alarmee.WardManager
             return wardStateInfo;
         }
 
-        private int calculateRemainingTimeProgress(PumpDto pump)
+        private int CalculateRemainingTimeProgress(PumpDto pump)
         {
             return (pump.RemainingTime * 100 / pump.TotalTime);
         }
 
-		private string formatRemainingTime(PumpDto pump)
+		private string FormatRemainingTime(PumpDto pump)
         {
             if (pump.RemainingTime >= 3600)
             {

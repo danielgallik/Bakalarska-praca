@@ -9,33 +9,50 @@ namespace Alarmee.WardManager
 	{
         public Dictionary<string, string> GetWardPlans()
         {
-            var client = new PlanDataAccessClient();
-            var planList = client.GetPlanList();
-            client.Close();
+            try
+            {
+                var client = new PlanDataAccessClient();
+                var planList = client.GetPlanList();
+                client.Close();
 
-            return planList;
+                return planList;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
 		public WardStateInfo GetWardState(string id)
-		{
-			// the manager contains no business logic, it is only orchestrating other components;
-			// calling data access, passing obtained data to the engine for further processing and returning final ward state
+        {
+            ArrayConverter arrayConverter = new ArrayConverter();
+            RemainingTimesEngine remainingTimesEngine = new RemainingTimesEngine();
 
-			// get data from data access service
-			var pumpDataAccessClient = new PumpDataAccessClient();
-			var pumps = pumpDataAccessClient.GetAllPumps();
-			pumpDataAccessClient.Close();
+            try
+            {
+                var client = new PlanDataAccessClient();
+                var plan = client.GetPlan(id);
+                client.Close();
+                
+                try
+                {
+                    var pumpDataAccessClient = new PumpDataAccessClient();
+                    var pumps = pumpDataAccessClient.GetAllPumps();
+                    pumpDataAccessClient.Close();
 
-            var client = new PlanDataAccessClient();
-            var plan = client.GetPlan(id);
-            client.Close();
+                    Dictionary<string, List<PumpDto>> pumpDictionary = arrayConverter.PumpListToDictionary(pumps);
 
-			// transform the data
-            var remainingTimesEngine = new RemainingTimesEngine();
-
-            var wardState = remainingTimesEngine.getWardStateInfo(plan, pumps);
-
-			return wardState;
+                    return remainingTimesEngine.GetWardStateInfo(plan, pumpDictionary);
+                }
+                catch
+                {
+                    return remainingTimesEngine.GetWardStateInfo(plan, new Dictionary<string, List<PumpDto>>()); ;
+                }
+            }
+            catch
+            {
+                return remainingTimesEngine.GetWardStateInfoWithError(id);
+            }
 		}
 	}
 }

@@ -91,3 +91,12 @@
         </div>
     </div>
 </div>
+
+@if (!Model.SuccessLoad)
+{
+    <div class="MessageView">
+        <div class="MessageBox">
+            @Html.Raw(Model.ErrorMessage)
+        </div>
+    </div>
+}

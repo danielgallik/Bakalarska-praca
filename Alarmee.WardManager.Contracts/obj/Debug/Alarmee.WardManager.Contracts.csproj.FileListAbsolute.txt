@@ -6,3 +6,4 @@ D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\bin\Debug\Alarmee.W
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\bin\Debug\Alarmee.WardManager.Contracts.pdb
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\obj\Debug\Alarmee.WardManager.Contracts.dll
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\obj\Debug\Alarmee.WardManager.Contracts.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardManager.Contracts\obj\Debug\Alarmee.WardManager.Contracts.csprojResolveAssemblyReference.cache

@@ -19,6 +19,7 @@
                 dataType: "html",
                 contentType: "application/json; charset=utf-8"
             }).done(function (partialViewResult) {
+                
                 $("#PlanDetail").html(partialViewResult);
             }).fail(function (xhr, status, error) {
                 console.log("Status: " + status + " Error: " + error);

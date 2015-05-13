@@ -10,23 +10,41 @@ using WebGrease.Css.Extensions;
 
 namespace Alarmee.Web.Controllers
 {
-	public class HomeController : Controller
-	{
+    public class HomeController : Controller
+    {
         private PlanDetailModel GetModel(string id)
         {
-            var client = new WardManagerClient();
-            var wardState = client.GetWardState(id);
-            client.Close();
-            PlanDetailModel model = new PlanDetailModel(wardState);
-            model.Id = id;
+            PlanDetailModel model = new PlanDetailModel();
+            try
+            {
+                var client = new WardManagerClient();
+                var wardState = client.GetWardState(id);
+                client.Close();
+
+                model.SetPlan(wardState);
+            }
+            catch
+            {
+                model.SetError(id, "Service is temporarily unavailable. <br /><br /> Please check your connection or contact your IT administrator.");
+            }
             return model;
         }
 
         public ActionResult Index()
         {
-            var client = new WardManagerClient();
-            Dictionary<string, string> wardPlan = client.GetWardPlans();
-            client.Close();
+            Dictionary<string, string> wardPlan;
+
+            try
+            {
+                var client = new WardManagerClient();
+                wardPlan = client.GetWardPlans();
+                client.Close();
+            }
+            catch
+            {
+                wardPlan = null;
+            }
+            
             return View(wardPlan);
         }
 
@@ -40,5 +58,5 @@ namespace Alarmee.Web.Controllers
         {
             return PartialView("PlanDetailPartialView", GetModel(id));
         }
-	}
+    }
 }

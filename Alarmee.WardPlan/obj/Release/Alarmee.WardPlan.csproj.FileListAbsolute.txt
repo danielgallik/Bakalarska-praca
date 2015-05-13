@@ -5,3 +5,4 @@ D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\bin\Release\Alarmee.WardPlan.Con
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\obj\Release\Alarmee.WardPlan.csprojResolveAssemblyReference.cache
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\obj\Release\Alarmee.WardPlan.dll
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\obj\Release\Alarmee.WardPlan.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan\bin\Release\Plans.xml

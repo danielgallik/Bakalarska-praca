@@ -3,15 +3,28 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<div class="planList">
-    <h1>Select plan:</h1>
-    <hr />
-    <ul>
-        @foreach (KeyValuePair<string, string> item in Model)
-        {
-            <li>
-                @Html.ActionLink(item.Value, "Plan", "Home", new { id = item.Key }, null)
-            </li>
-        }
-    </ul>
-</div>
+@if (Model != null)
+{
+    <div class="planList">
+        <h1>Select plan:</h1>
+        <hr />
+        <ul>
+            @foreach (KeyValuePair<string, string> item in Model)
+            {
+                <li>
+                    @Html.ActionLink(item.Value, "Plan", "Home", new { id = item.Key }, null)
+                </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div class="MessageView">
+        <div class="MessageBox">
+            Service is temporarily unavailable. <br />
+            <br /> 
+            Please check your connection and refresh page or contact your IT administrator.
+        </div>
+    </div>
+}

@@ -7,6 +7,9 @@ namespace Alarmee.WardPlan.Contract
     public class Plan
     {
         [DataMember]
+        public string Id { get; set; }
+
+        [DataMember]
         public string Name { get; set; }
 
         [DataMember]
