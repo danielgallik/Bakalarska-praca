@@ -12,24 +12,6 @@ namespace Alarmee.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private PlanDetailModel GetModel(string id)
-        {
-            PlanDetailModel model = new PlanDetailModel();
-            try
-            {
-                var client = new WardManagerClient();
-                var wardState = client.GetWardState(id);
-                client.Close();
-
-                model.SetPlan(wardState);
-            }
-            catch
-            {
-                model.SetError(id, "Service is temporarily unavailable. <br /><br /> Please check your connection or contact your IT administrator.");
-            }
-            return model;
-        }
-
         public ActionResult Index()
         {
             Dictionary<string, string> wardPlan;
@@ -57,6 +39,24 @@ namespace Alarmee.Web.Controllers
         public ActionResult GetPlan(string id = "")
         {
             return PartialView("PlanDetailPartialView", GetModel(id));
+        }
+
+        private PlanDetailModel GetModel(string id)
+        {
+            PlanDetailModel model = new PlanDetailModel();
+            try
+            {
+                var client = new WardManagerClient();
+                var wardState = client.GetWardState(id);
+                client.Close();
+
+                model.SetPlan(wardState);
+            }
+            catch
+            {
+                model.SetError(id, "Service is temporarily unavailable. <br /><br /> Please check your connection or contact your IT administrator.");
+            }
+            return model;
         }
     }
 }

@@ -2,4 +2,3 @@ D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan.Contract\bin\Release\Alarmee.War
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan.Contract\bin\Release\Alarmee.WardPlan.Contract.pdb
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan.Contract\obj\Release\Alarmee.WardPlan.Contract.dll
 D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan.Contract\obj\Release\Alarmee.WardPlan.Contract.pdb
-D:\Dropbox\C#\Bakalarska praca\Alarmee.WardPlan.Contract\obj\Release\Alarmee.WardPlan.Contract.csprojResolveAssemblyReference.cache

@@ -52,13 +52,11 @@
       </Bed>
       <Bed>
         <Name X="40" Y="355">007</Name>
-        <IpAddress>192.168.1.7</IpAddress>
         <Vertex X="20" Y="320"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
         <Name X="180" Y="355">008</Name>
-        <IpAddress>192.168.1.8</IpAddress>
         <Vertex X="160" Y="320"/>
         <Vertex X="80" Y="50"/>
       </Bed>
@@ -83,13 +81,11 @@
       </Bed>
       <Bed>
         <Name X="40" Y="545">011</Name>
-        <IpAddress>192.168.1.11</IpAddress>
         <Vertex X="20" Y="510"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
         <Name X="180" Y="545">012</Name>
-        <IpAddress>192.168.1.12</IpAddress>
         <Vertex X="160" Y="510"/>
         <Vertex X="80" Y="50"/>
       </Bed>

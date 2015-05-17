@@ -64,10 +64,11 @@ namespace Alarmee.Web.Models
 
         public class CanvasRoom
         {
-            public string Name { get; set; }
-            public Vertex NamePosition { get; set; }
-            public List<Vertex> Vertices { get; set; }
-            public string Color { get; set; }
+            public string Name { get; private set; }
+            public Vertex NamePosition { get; private set; }
+            public string NameColor { get; private set; }
+            public List<Vertex> Vertices { get; private set; }
+            public string Color { get; private set; }
 
             public CanvasRoom(string name, Vertex namePosition, List<Vertex> vertices, string state)
             {
@@ -75,17 +76,18 @@ namespace Alarmee.Web.Models
 
                 Name = name;
                 NamePosition = namePosition;
+                NameColor = colorConverter.RoomStateToNameColor(state);
                 Vertices = vertices;
-                Color = colorConverter.StateToRoomColor(state);
+                Color = colorConverter.RoomStateToColor(state);
             }
         }
 
         public class CanvasBed
         {
-            public string Name { get; set; }
-            public Vertex NamePosition { get; set; }
-            public List<Vertex> Vertices { get; set; }
-            public string Color { get; set; }
+            public string Name { get; private set; }
+            public Vertex NamePosition { get; private set; }
+            public List<Vertex> Vertices { get; private set; }
+            public string Color { get; private set; }
 
             public CanvasBed(string name, Vertex namePosition, List<Vertex> vertices, string state)
             {
@@ -94,7 +96,7 @@ namespace Alarmee.Web.Models
                 Name = name;
                 NamePosition = namePosition;
                 Vertices = vertices;
-                Color = colorConverter.StateToColor(state);
+                Color = colorConverter.BedStateToColor(state);
             }
         }
 
@@ -105,9 +107,9 @@ namespace Alarmee.Web.Models
             public string Medicament { get; private set; }
             public string Type { get; private set; }
             public string ProgressColor { get; private set; }
-            public int Progress { get; private set; }
+            public double Progress { get; private set; }
 
-            public PumpListItem(string bed, string remainingTime, string medicament, string type, string state, int progress)
+            public PumpListItem(string bed, string remainingTime, string medicament, string type, string state, double progress)
             {
                 ColorConverter colorConverter = new ColorConverter();
                 ImageConverter imageConvert = new ImageConverter();
@@ -116,7 +118,7 @@ namespace Alarmee.Web.Models
                 RemainingTime = remainingTime;
                 Medicament = medicament;
                 Type = imageConvert.TypeToImage(type);
-                ProgressColor = colorConverter.StateToColor(state);
+                ProgressColor = colorConverter.BedStateToColor(state);
                 Progress = progress;
             }
         }
@@ -138,7 +140,7 @@ namespace Alarmee.Web.Models
                 Message = message;
                 Medicament = medicament;
                 Type = imageConvert.TypeToWhiteImage(type);
-                Color = colorConverter.StateToColor(state);
+                Color = colorConverter.BedStateToColor(state);
             }
         }
 

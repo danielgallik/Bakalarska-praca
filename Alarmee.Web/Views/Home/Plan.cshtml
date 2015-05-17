@@ -1,7 +1,9 @@
 ﻿@model Alarmee.Web.Models.PlanDetailModel
 
 @{
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = "Alarmee - " + Model.Name;
+    ViewData["Name"] = Model.Name;
+    ViewData["Id"] = Model.Id;
 }
 
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>

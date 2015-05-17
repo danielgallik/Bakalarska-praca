@@ -33,8 +33,22 @@ namespace Simulator
 						Console.WriteLine("Invalid command syntax. Serial number expected");
 						writeHelp();
 						continue;
-                    }
+                    } 
+                    
                     var adminClient = new AdminPumpDataAccessClient();
+                    var allPumps = adminClient.GetAllPumps();
+                    adminClient.Close();
+
+                    foreach (var pump in allPumps)
+                    {
+                        if (tokens[1] == pump.SerialNumber)
+                        {
+                            Console.WriteLine("Serial number already exist.");
+                            continue;
+                        }
+                    }
+
+                    adminClient = new AdminPumpDataAccessClient();
                     if (tokens.Length == 2)
                     {
                         adminClient.AddPump(tokens[1]);

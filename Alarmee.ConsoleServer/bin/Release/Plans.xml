@@ -2,153 +2,149 @@
 <Plans>
   <Plan Id="oncology" Name="Oncology">
     <Room>
-      <Name X="90" Y="110">Room 1</Name>
+      <Name X="80" Y="50">Room 1</Name>
       <Vertex X="10" Y="10"/>
-      <Vertex X="250" Y="10"/>
-      <Vertex X="250" Y="190"/>
-      <Vertex X="10" Y="190"/>
+      <Vertex X="230" Y="10"/>
+      <Vertex X="230" Y="220"/>
+      <Vertex X="10" Y="220"/>
       <Bed>
-        <Name X="40" Y="55">001</Name>
+        <Name X="50" Y="115">001</Name>
         <IpAddress>192.168.1.1</IpAddress>
-        <Vertex X="20" Y="20"/>
+        <Vertex X="30" Y="80"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="180" Y="55">002</Name>
+        <Name X="150" Y="115">002</Name>
         <IpAddress>192.168.1.2</IpAddress>
-        <Vertex X="160" Y="20"/>
+        <Vertex X="130" Y="80"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="40" Y="165">003</Name>
+        <Name X="50" Y="185">003</Name>
         <IpAddress>192.168.1.3</IpAddress>
-        <Vertex X="20" Y="130"/>
+        <Vertex X="30" Y="150"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="180" Y="165">004</Name>
+        <Name X="150" Y="185">004</Name>
         <IpAddress>192.168.1.4</IpAddress>
-        <Vertex X="160" Y="130"/>
+        <Vertex X="130" Y="150"/>
         <Vertex X="80" Y="50"/>
       </Bed>
     </Room>
     <Room>
-      <Name X="90" Y="300">Room 2</Name>
-      <Vertex X="10" Y="200"/>
-      <Vertex X="250" Y="200"/>
-      <Vertex X="250" Y="380"/>
-      <Vertex X="10" Y="380"/>
+      <Name X="80" Y="270">Room 2</Name>
+      <Vertex X="10" Y="230"/>
+      <Vertex X="230" Y="230"/>
+      <Vertex X="230" Y="440"/>
+      <Vertex X="10" Y="440"/>
       <Bed>
-        <Name X="40" Y="245">005</Name>
+        <Name X="50" Y="335">005</Name>
         <IpAddress>192.168.1.5</IpAddress>
-        <Vertex X="20" Y="210"/>
+        <Vertex X="30" Y="300"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="180" Y="245">006</Name>
+        <Name X="150" Y="335">006</Name>
         <IpAddress>192.168.1.6</IpAddress>
-        <Vertex X="160" Y="210"/>
+        <Vertex X="130" Y="300"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="40" Y="355">007</Name>
-        <IpAddress>192.168.1.7</IpAddress>
-        <Vertex X="20" Y="320"/>
+        <Name X="50" Y="405">007</Name>
+        <Vertex X="30" Y="370"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="180" Y="355">008</Name>
-        <IpAddress>192.168.1.8</IpAddress>
-        <Vertex X="160" Y="320"/>
+        <Name X="150" Y="405">008</Name>
+        <Vertex X="130" Y="370"/>
         <Vertex X="80" Y="50"/>
       </Bed>
     </Room>
     <Room>
-      <Name X="90" Y="490">Room 3</Name>
-      <Vertex X="10" Y="390"/>
-      <Vertex X="250" Y="390"/>
-      <Vertex X="250" Y="570"/>
-      <Vertex X="10" Y="570"/>
+      <Name X="80" Y="490">Room 3</Name>
+      <Vertex X="10" Y="450"/>
+      <Vertex X="230" Y="450"/>
+      <Vertex X="230" Y="660"/>
+      <Vertex X="10" Y="660"/>
       <Bed>
-        <Name X="40" Y="435">009</Name>
+        <Name X="50" Y="555">009</Name>
         <IpAddress>192.168.1.9</IpAddress>
-        <Vertex X="20" Y="400"/>
+        <Vertex X="30" Y="520"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="180" Y="435">010</Name>
+        <Name X="150" Y="555">010</Name>
         <IpAddress>192.168.1.10</IpAddress>
-        <Vertex X="160" Y="400"/>
+        <Vertex X="130" Y="520"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="40" Y="545">011</Name>
-        <IpAddress>192.168.1.11</IpAddress>
-        <Vertex X="20" Y="510"/>
+        <Name X="50" Y="625">011</Name>
+        <Vertex X="30" Y="590"/>
         <Vertex X="80" Y="50"/>
       </Bed>
       <Bed>
-        <Name X="180" Y="545">012</Name>
-        <IpAddress>192.168.1.12</IpAddress>
-        <Vertex X="160" Y="510"/>
+        <Name X="150" Y="625">012</Name>
+        <Vertex X="130" Y="590"/>
         <Vertex X="80" Y="50"/>
       </Bed>
     </Room>
     <Room>
-      <Name X="110" Y="640">WC</Name>
-      <Vertex X="10" Y="580"/>
-      <Vertex X="250" Y="580"/>
-      <Vertex X="250" Y="690"/>
-      <Vertex X="10" Y="690"/>
+      <Name X="100" Y="745">WC</Name>
+      <Vertex X="10" Y="680"/>
+      <Vertex X="230" Y="680"/>
+      <Vertex X="230" Y="790"/>
+      <Vertex X="10" Y="790"/>
     </Room>
     <Room>
-      <Name X="587" Y="115">Laboratory</Name>
+      <Name X="587" Y="125">Laboratory</Name>
       <Vertex X="530" Y="10"/>
       <Vertex X="760" Y="10"/>
-      <Vertex X="760" Y="200"/>
-      <Vertex X="530" Y="200"/>
+      <Vertex X="760" Y="220"/>
+      <Vertex X="530" Y="220"/>
     </Room>
     <Room>
-      <Name X="607" Y="290">Office</Name>
-      <Vertex X="370" Y="280"/>
-      <Vertex X="470" Y="280"/>
-      <Vertex X="530" Y="210"/>
-      <Vertex X="760" Y="210"/>
-      <Vertex X="760" Y="350"/>
-      <Vertex X="370" Y="350"/>
+      <Name X="607" Y="320">Office</Name>
+      <Vertex X="370" Y="310"/>
+      <Vertex X="470" Y="310"/>
+      <Vertex X="530" Y="230"/>
+      <Vertex X="760" Y="230"/>
+      <Vertex X="760" Y="410"/>
+      <Vertex X="370" Y="410"/>
     </Room>
     <Room>
-      <Name X="390" Y="420">Room 4</Name>
-      <Vertex X="370" Y="360"/>
-      <Vertex X="570" Y="360"/>
-      <Vertex X="570" Y="460"/>
-      <Vertex X="370" Y="460"/>
+      <Name X="390" Y="490">Room 4</Name>
+      <Vertex X="370" Y="420"/>
+      <Vertex X="570" Y="420"/>
+      <Vertex X="570" Y="540"/>
+      <Vertex X="370" Y="540"/>
       <Bed>
-        <Name X="507" Y="420">013</Name>
+        <Name X="507" Y="490">013</Name>
         <IpAddress>192.168.1.13</IpAddress>
-        <Vertex X="500" Y="370"/>
+        <Vertex X="500" Y="440"/>
         <Vertex X="50" Y="80"/>
       </Bed>
     </Room>
     <Room>
-      <Name X="390" Y="530">Room 5</Name>
-      <Vertex X="370" Y="470"/>
-      <Vertex X="570" Y="470"/>
-      <Vertex X="570" Y="570"/>
-      <Vertex X="370" Y="570"/>
+      <Name X="390" Y="620">Room 5</Name>
+      <Vertex X="370" Y="550"/>
+      <Vertex X="570" Y="550"/>
+      <Vertex X="570" Y="670"/>
+      <Vertex X="370" Y="670"/>
       <Bed>
-        <Name X="507" Y="530">014</Name>
+        <Name X="507" Y="620">014</Name>
         <IpAddress>192.168.1.14</IpAddress>
-        <Vertex X="500" Y="480"/>
+        <Vertex X="500" Y="570"/>
         <Vertex X="50" Y="80"/>
       </Bed>
     </Room>
     <Room>
-      <Name X="450" Y="640">WC</Name>
-      <Vertex X="370" Y="580"/>
-      <Vertex X="570" Y="580"/>
-      <Vertex X="570" Y="690"/>
-      <Vertex X="370" Y="690"/>
+      <Name X="449" Y="745">WC</Name>
+      <Vertex X="370" Y="680"/>
+      <Vertex X="570" Y="680"/>
+      <Vertex X="570" Y="790"/>
+      <Vertex X="370" Y="790"/>
     </Room>
   </Plan>
   <Plan Id="intensive_care_unit" Name="Intensive Care Unit">

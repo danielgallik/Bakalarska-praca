@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Alarmee.WardManager.Contracts;
 using Alarmee.WardPlan.Contract;
@@ -8,10 +9,12 @@ namespace Alarmee.WardManager
 {
 	internal class RemainingTimesEngine
     {
-        static string stateInitial = "Initial";
-        static string stateRunning = "Running";
-        static string statePreAlarm = "PreAlarm";
-        static string stateAlarm = "Alarm";
+        private static string stateNotConfigured = "NotConfigured";
+        private static string stateInactive = "Inactive";
+        private static string stateRunning = "Running";
+        private static string stateOk = "Ok";
+        private static string statePreAlarm = "PreAlarm";
+        private static string stateAlarm = "Alarm";
 
         public WardStateInfo GetWardStateInfoWithError(string id)
         {
@@ -31,6 +34,7 @@ namespace Alarmee.WardManager
             wardStateInfo.Name = plan.Name;
             wardStateInfo.SuccessLoad = true;
             wardStateInfo.ErrorMessage = "";
+            Dictionary<int, List<WardStateInfo.Pump>> dicPump = new Dictionary<int, List<WardStateInfo.Pump>>();
 
             foreach (Plan.Room room in plan.Rooms)
             {
@@ -46,7 +50,14 @@ namespace Alarmee.WardManager
                     X = v.X,
                     Y = v.Y
                 }));
-                roomInfo.State = stateInitial;
+                if (room.Beds.Count > 0)
+                {
+                    roomInfo.State = stateOk;
+                }
+                else
+                {
+                    roomInfo.State = stateNotConfigured;
+                }
 
                 foreach (Plan.Bed bed in room.Beds)
                 {
@@ -62,7 +73,14 @@ namespace Alarmee.WardManager
                         X = v.X,
                         Y = v.Y
                     }));
-                    bedInfo.State = stateInitial;
+                    if (bed.IpAddresses.Count > 0)
+                    {
+                        bedInfo.State = stateInactive;
+                    }
+                    else
+                    {
+                        bedInfo.State = stateNotConfigured;
+                    }
 
                     foreach (string ipAddress in bed.IpAddresses)
                     {
@@ -72,7 +90,11 @@ namespace Alarmee.WardManager
                             {
                                 if (pump.CurrentState == stateRunning)
                                 {
-                                    wardStateInfo.Pumps.Add(new WardStateInfo.Pump()
+                                    if (!dicPump.ContainsKey(pump.RemainingTime))
+                                    {
+                                        dicPump.Add(pump.RemainingTime, new List<WardStateInfo.Pump>());
+                                    }
+                                    dicPump[pump.RemainingTime].Add(new WardStateInfo.Pump()
                                     {
                                         Bed = bed.Name,
                                         Medicament = pump.Medicament,
@@ -81,18 +103,22 @@ namespace Alarmee.WardManager
                                         RemainingTime = FormatRemainingTime(pump),
                                         State = pump.CurrentState
                                     });
-                                    if (bedInfo.State == stateInitial)
+                                    if (bedInfo.State != statePreAlarm && bedInfo.State != stateAlarm)
                                     {
                                         bedInfo.State = stateRunning;
                                     }
-                                    if (roomInfo.State == stateInitial)
+                                    if (roomInfo.State != statePreAlarm && roomInfo.State != stateAlarm)
                                     {
                                         roomInfo.State = stateRunning;
                                     }
                                 }
                                 else if (pump.CurrentState == statePreAlarm)
                                 {
-                                    wardStateInfo.Pumps.Add(new WardStateInfo.Pump()
+                                    if (!dicPump.ContainsKey(pump.RemainingTime))
+                                    {
+                                        dicPump.Add(pump.RemainingTime, new List<WardStateInfo.Pump>());
+                                    }
+                                    dicPump[pump.RemainingTime].Add(new WardStateInfo.Pump()
                                     {
                                         Bed = bed.Name,
                                         Medicament = pump.Medicament,
@@ -120,7 +146,7 @@ namespace Alarmee.WardManager
                                 }
                                 else if (pump.CurrentState == stateAlarm)
                                 {
-                                    wardStateInfo.Alerts.Add(new WardStateInfo.Alert()
+                                    wardStateInfo.Alerts.Insert(0, new WardStateInfo.Alert()
                                     {
                                         Bed = bed.Name,
                                         Message = pump.AlertMessage,
@@ -138,23 +164,24 @@ namespace Alarmee.WardManager
                 }
                 wardStateInfo.Rooms.Add(roomInfo);
             }
+            wardStateInfo.Pumps = dicPump.OrderBy(p => p.Key).SelectMany(p => p.Value).ToList();
             return wardStateInfo;
         }
 
-        private int CalculateRemainingTimeProgress(PumpDto pump)
+        private double CalculateRemainingTimeProgress(PumpDto pump)
         {
-            return (pump.RemainingTime * 100 / pump.TotalTime);
+            return ((double)pump.RemainingTime * 100 / pump.TotalTime);
         }
 
 		private string FormatRemainingTime(PumpDto pump)
         {
             if (pump.RemainingTime >= 3600)
             {
-                return string.Format("{0} hour", pump.RemainingTime / 3600);
+                return string.Format("{0} hour", Math.Round((double)pump.RemainingTime / 3600, 2));
             }
             if (pump.RemainingTime >= 60)
             {
-                return string.Format("{0} min", pump.RemainingTime / 60);
+                return string.Format("{0} min", Math.Round((double)pump.RemainingTime / 60, 2));
             }
 			return string.Format("{0} sec", pump.RemainingTime);
 		}

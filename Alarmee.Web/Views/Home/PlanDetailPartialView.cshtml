@@ -3,7 +3,7 @@
 
 <div class="hospitalPlan">
     <div class="infoPlan">
-        <canvas id="planCanvas" width="780" height="700"></canvas>
+        <canvas id="planCanvas" width="780" height="800"></canvas>
     </div>
 
     <script>
@@ -21,10 +21,12 @@
             for(var j = 0; j < vertices.length; j++){
                 context.lineTo(vertices[j].X, vertices[j].Y);
             }
+            context.fillStyle = rooms[i].Color;
+            context.fill();
             context.stroke();
 
             context.font = 'bold 20pt wf_segoe-ui_light,"Segoe UI Light","Segoe WP Light","Segoe UI","Segoe WP",Tahoma,Arial,sans-serif';
-            context.fillStyle = rooms[i].Color;
+            context.fillStyle = rooms[i].NameColor;
             context.fillText(rooms[i].Name, rooms[i].NamePosition.X, rooms[i].NamePosition.Y);
         }
 
@@ -32,7 +34,7 @@
 
         for(var i = 0; i < beds.length; i++){
             context.beginPath();
-            context.rect(beds[i].Vertices[0].X, beds[i].Vertices[0].Y, beds[i].Vertices[1].X, beds[i].Vertices[1].Y);
+            roundedRect(context, beds[i].Vertices[0].X, beds[i].Vertices[0].Y, beds[i].Vertices[1].X, beds[i].Vertices[1].Y, 7);
             context.fillStyle = beds[i].Color;
             context.fill();
             context.stroke();
@@ -40,6 +42,18 @@
             context.font = 'bold 20pt wf_segoe-ui_light,"Segoe UI Light","Segoe WP Light","Segoe UI","Segoe WP",Tahoma,Arial,sans-serif';
             context.fillStyle = 'white';
             context.fillText(beds[i].Name, beds[i].NamePosition.X, beds[i].NamePosition.Y);
+        }
+
+        function roundedRect(context, x, y, w, h, r){
+            context.moveTo(x+r, y);
+            context.lineTo(x+w-r, y);
+            context.quadraticCurveTo(x+w, y, x+w, y+r);
+            context.lineTo(x+w, y+h-r);
+            context.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+            context.lineTo(x+r, y+h);
+            context.quadraticCurveTo(x, y+h, x, y+h-r);
+            context.lineTo(x, y+r);
+            context.quadraticCurveTo(x, y, x+r, y);
         }
     </script>
 
@@ -73,21 +87,23 @@
         <div id="alertBox" class="infoBox">
             <h2>Alerts</h2>
             <hr />
-            <table id="alertList">
-                <tbody>
-                    @foreach (var alert in @Model.Alerts)
-                    {
-                        <tr class="alert" style="background-color:@alert.Color;">
-                            <td class="alertBed"><b>@alert.Bed</b></td>
-                            <td class="alertMessage">
-                                <b>@alert.Message</b><br />
-                                <i>@alert.Medicament</i>
-                            </td>
-                            <td class="alertType"><img height="30" src="@Url.Content(alert.Type)" /></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div class="scrollList">
+                <table id="alertList">
+                    <tbody>
+                        @foreach (var alert in @Model.Alerts)
+                        {
+                            <tr class="alert" style="background-color:@alert.Color;">
+                                <td class="alertBed"><b>@alert.Bed</b></td>
+                                <td class="alertMessage">
+                                    <b>@alert.Message</b><br />
+                                    <i>@alert.Medicament</i>
+                                </td>
+                                <td class="alertType"><img height="30" src="@Url.Content(alert.Type)" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

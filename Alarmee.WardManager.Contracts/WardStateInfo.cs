@@ -96,7 +96,7 @@ namespace Alarmee.WardManager.Contracts
             public string Type { get; set; }
 
             [DataMember]
-            public int Progress { get; set; }
+            public double Progress { get; set; }
 
             [DataMember]
             public string State { get; set; }
