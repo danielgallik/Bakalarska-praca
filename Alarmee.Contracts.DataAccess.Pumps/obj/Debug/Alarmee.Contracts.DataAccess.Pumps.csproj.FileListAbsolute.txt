@@ -1,0 +1,4 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Contracts.DataAccess.Pumps\bin\Debug\Alarmee.Contracts.DataAccess.Pumps.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Contracts.DataAccess.Pumps\bin\Debug\Alarmee.Contracts.DataAccess.Pumps.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Contracts.DataAccess.Pumps\obj\Debug\Alarmee.Contracts.DataAccess.Pumps.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Contracts.DataAccess.Pumps\obj\Debug\Alarmee.Contracts.DataAccess.Pumps.pdb

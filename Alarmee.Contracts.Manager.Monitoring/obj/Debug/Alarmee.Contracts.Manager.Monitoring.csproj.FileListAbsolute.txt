@@ -1,0 +1,4 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Contracts.Manager.Monitoring\bin\Debug\Alarmee.Contracts.Manager.Monitoring.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Contracts.Manager.Monitoring\bin\Debug\Alarmee.Contracts.Manager.Monitoring.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Contracts.Manager.Monitoring\obj\Debug\Alarmee.Contracts.Manager.Monitoring.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Contracts.Manager.Monitoring\obj\Debug\Alarmee.Contracts.Manager.Monitoring.pdb

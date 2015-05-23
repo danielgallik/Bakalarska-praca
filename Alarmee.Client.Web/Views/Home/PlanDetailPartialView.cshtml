@@ -1,0 +1,118 @@
+﻿@model Alarmee.Client.Web.Models.PlanDetailModel
+@using Newtonsoft.Json
+
+<div class="hospitalPlan">
+    <div class="infoPlan">
+        <canvas id="planCanvas" width="780" height="800"></canvas>
+    </div>
+
+    <script>
+        var canvas = document.getElementById('planCanvas');
+        var context = canvas.getContext('2d');
+
+        var model = @Html.Raw(JsonConvert.SerializeObject(this.Model));
+
+        var rooms = model.Rooms;
+
+        for(var i = 0; i < rooms.length; i++){
+            var vertices = rooms[i].Vertices;
+            context.beginPath();
+            context.moveTo(vertices[vertices.length-1].X, vertices[vertices.length-1].Y);
+            for(var j = 0; j < vertices.length; j++){
+                context.lineTo(vertices[j].X, vertices[j].Y);
+            }
+            context.fillStyle = rooms[i].Color;
+            context.fill();
+            context.stroke();
+
+            context.font = 'bold 20pt wf_segoe-ui_light,"Segoe UI Light","Segoe WP Light","Segoe UI","Segoe WP",Tahoma,Arial,sans-serif';
+            context.fillStyle = rooms[i].NameColor;
+            context.fillText(rooms[i].Name, rooms[i].NamePosition.X, rooms[i].NamePosition.Y);
+        }
+
+        var beds = model.Beds;
+
+        for(var i = 0; i < beds.length; i++){
+            context.beginPath();
+            roundedRect(context, beds[i].Vertices[0].X, beds[i].Vertices[0].Y, beds[i].Vertices[1].X, beds[i].Vertices[1].Y, 7);
+            context.fillStyle = beds[i].Color;
+            context.fill();
+            context.stroke();
+
+            context.font = 'bold 20pt wf_segoe-ui_light,"Segoe UI Light","Segoe WP Light","Segoe UI","Segoe WP",Tahoma,Arial,sans-serif';
+            context.fillStyle = 'white';
+            context.fillText(beds[i].Name, beds[i].NamePosition.X, beds[i].NamePosition.Y);
+        }
+
+        function roundedRect(context, x, y, w, h, r){
+            context.moveTo(x+r, y);
+            context.lineTo(x+w-r, y);
+            context.quadraticCurveTo(x+w, y, x+w, y+r);
+            context.lineTo(x+w, y+h-r);
+            context.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+            context.lineTo(x+r, y+h);
+            context.quadraticCurveTo(x, y+h, x, y+h-r);
+            context.lineTo(x, y+r);
+            context.quadraticCurveTo(x, y, x+r, y);
+        }
+    </script>
+
+    <div class="infoBoxes">
+        <div id="pumpBox" class="infoBox">
+            <h2>Remaining Times</h2>
+            <hr />
+            <div id="pumpList">
+                <div class="pumpListHead">
+                    <div class="pump">
+                        <span class="pumpBed">Bed</span>
+                        <span class="pumpRemTime">Rem.Time</span>
+                        <span class="pumpInfo">Medication</span>
+                        <span class="pumpType">Type</span>
+                    </div>
+                </div>
+                <div id="pumpListBody" class="pumpListBody">
+                    @foreach (var pump in @Model.Pumps)
+                    {
+                        <div class="pump">
+                            <span class="pumpBed">@pump.Bed</span>
+                            <span class="pumpRemTime">@pump.RemainingTime</span>
+                            <span class="pumpInfo">@pump.Medicament</span>
+                            <span class="pumpType"><img height="23" src="@Url.Content(@pump.Type)" /></span>
+                            <div class="pumpProgress"><span style="display:block;color:white;background-color:@pump.ProgressColor;width:@pump.Progress%;">.</span></div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="alertBox" class="infoBox">
+            <h2>Alerts</h2>
+            <hr />
+            <div id="scrollList" class="scrollList">
+                <table id="alertList">
+                    <tbody>
+                        @foreach (var alert in @Model.Alerts)
+                        {
+                            <tr class="alert" style="background-color:@alert.Color;">
+                                <td class="alertBed"><b>@alert.Bed</b></td>
+                                <td class="alertMessage">
+                                    <b>@alert.Message</b><br />
+                                    <i>@alert.Medicament</i>
+                                </td>
+                                <td class="alertType"><img height="30" src="@Url.Content(alert.Type)" /></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (!Model.SuccessLoad)
+{
+    <div class="MessageView">
+        <div class="MessageBox">
+            @Html.Raw(Model.ErrorMessage)
+        </div>
+    </div>
+}

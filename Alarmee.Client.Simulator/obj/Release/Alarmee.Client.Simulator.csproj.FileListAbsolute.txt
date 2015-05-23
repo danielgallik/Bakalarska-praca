@@ -1,0 +1,10 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\obj\Release\Alarmee.Client.Simulator.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Release\Alarmee.Client.Simulator.exe.config
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Release\Alarmee.Client.Simulator.exe
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Release\Alarmee.Client.Simulator.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Release\Alarmee.Contracts.DataAccess.Pumps.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Release\Alarmee.DataAccess.Pumps.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Release\Alarmee.Contracts.DataAccess.Pumps.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Release\Alarmee.DataAccess.Pumps.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\obj\Release\Alarmee.Client.Simulator.exe
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\obj\Release\Alarmee.Client.Simulator.pdb

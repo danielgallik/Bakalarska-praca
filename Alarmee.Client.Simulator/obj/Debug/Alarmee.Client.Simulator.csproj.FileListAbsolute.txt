@@ -1,0 +1,13 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Alarmee.Client.Simulator.exe.config
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Alarmee.Client.Simulator.exe
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Alarmee.Client.Simulator.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Alarmee.Contracts.DataAccess.Pumps.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Alarmee.DataAccess.Pumps.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Alarmee.Contracts.DataAccess.Pumps.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Alarmee.DataAccess.Pumps.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\obj\Debug\Alarmee.Client.Simulator.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\obj\Debug\Alarmee.Client.Simulator.exe
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\obj\Debug\Alarmee.Client.Simulator.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Properties\Settings.Designer.cs
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\Properties\Settings.settings
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Client.Simulator\bin\Debug\app.config

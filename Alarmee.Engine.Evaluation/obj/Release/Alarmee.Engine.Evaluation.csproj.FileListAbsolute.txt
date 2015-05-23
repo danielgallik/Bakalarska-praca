@@ -1,0 +1,11 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\obj\Release\Alarmee.Engine.Evaluation.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\bin\Release\Alarmee.Engine.Evaluation.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\bin\Release\Alarmee.Engine.Evaluation.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\bin\Release\Alarmee.Contracts.DataAccess.Plans.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\bin\Release\Alarmee.Contracts.DataAccess.Pumps.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\bin\Release\Alarmee.Contracts.Mamager.Monitoring.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\bin\Release\Alarmee.Contracts.DataAccess.Plans.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\bin\Release\Alarmee.Contracts.DataAccess.Pumps.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\bin\Release\Alarmee.Contracts.Mamager.Monitoring.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\obj\Release\Alarmee.Engine.Evaluation.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.Engine.Evaluation\obj\Release\Alarmee.Engine.Evaluation.pdb

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C35550E0-9BDE-40CE-A719-D85F48D05110}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Alarmee.Manager.Monitoring</RootNamespace>
+    <AssemblyName>Alarmee.Manager.Monitoring</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WardManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alarmee.Contracts.DataAccess.Plans\Alarmee.Contracts.DataAccess.Plans.csproj">
+      <Project>{130f6865-cea6-412b-bc5a-d62d757e7bf0}</Project>
+      <Name>Alarmee.Contracts.DataAccess.Plans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alarmee.Contracts.DataAccess.Pumps\Alarmee.Contracts.DataAccess.Pumps.csproj">
+      <Project>{f32ec96e-2671-4e85-90ab-4ab386ae0a76}</Project>
+      <Name>Alarmee.Contracts.DataAccess.Pumps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alarmee.Contracts.Manager.Monitoring\Alarmee.Contracts.Manager.Monitoring.csproj">
+      <Project>{34fccc70-f490-43d9-b700-38ddde66e5ee}</Project>
+      <Name>Alarmee.Contracts.Manager.Monitoring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alarmee.DataAccess.Plans\Alarmee.DataAccess.Plans.csproj">
+      <Project>{aef46eb5-dab9-4af1-abb8-6bd1e1415212}</Project>
+      <Name>Alarmee.DataAccess.Plans</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alarmee.DataAccess.Pumps\Alarmee.DataAccess.Pumps.csproj">
+      <Project>{ce20e706-8e33-4083-88d7-596d18153a9f}</Project>
+      <Name>Alarmee.DataAccess.Pumps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alarmee.Engine.Evaluation\Alarmee.Engine.Evaluation.csproj">
+      <Project>{07b972c6-90b5-450f-a8a8-0a72fd9e822e}</Project>
+      <Name>Alarmee.Engine.Evaluation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

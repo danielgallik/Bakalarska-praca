@@ -1,0 +1,35 @@
+﻿@model Alarmee.Client.Web.Models.PlanDetailModel
+
+@{
+    ViewBag.Title = "Alarmee - " + Model.Name;
+    ViewData["Name"] = Model.Name;
+    ViewData["Id"] = Model.Id;
+}
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<div id="PlanDetail">
+    @{Html.RenderPartial("PlanDetailPartialView", Model);}
+</div>
+
+<script>
+    $(document).ready(function () {
+        window.setInterval(function () {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetPlan", new { id = Model.Id })",
+                dataType: "html",
+                contentType: "application/json; charset=utf-8"
+            }).done(function (partialViewResult) {
+                var scrollPumpDiv = document.getElementById("pumpListBody").scrollTop;
+                var scrollAlertDiv = document.getElementById("scrollList").scrollTop;
+                $("#PlanDetail").html(partialViewResult);
+                document.getElementById("pumpListBody").scrollTop = scrollPumpDiv;
+                document.getElementById("scrollList").scrollTop = scrollAlertDiv;
+            }).fail(function (xhr, status, error) {
+                console.log("Status: " + status + " Error: " + error);
+                console.log(xhr);
+            });
+        }, 1000);
+    });
+</script>

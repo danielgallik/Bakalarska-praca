@@ -1,0 +1,8 @@
+D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Plans\bin\Debug\Plans.xml
+D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Plans\bin\Debug\Alarmee.DataAccess.Plans.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Plans\bin\Debug\Alarmee.DataAccess.Plans.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Plans\bin\Debug\Alarmee.Contracts.DataAccess.Plans.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Plans\bin\Debug\Alarmee.Contracts.DataAccess.Plans.pdb
+D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Plans\obj\Debug\Alarmee.DataAccess.Plans.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Plans\obj\Debug\Alarmee.DataAccess.Plans.dll
+D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Plans\obj\Debug\Alarmee.DataAccess.Plans.pdb
