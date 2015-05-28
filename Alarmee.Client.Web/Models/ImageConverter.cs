@@ -11,9 +11,9 @@ namespace Alarmee.Client.Web.Models
         {
             switch (type.ToLower())
             {
-                case "infusion":
+                case "volumetric":
                     return "~/Content/Image/drop.png";
-                case "injection":
+                case "syringe":
                     return "~/Content/Image/injection.png";
                 default:
                     return "~/Content/Image/dro.png";
@@ -24,9 +24,9 @@ namespace Alarmee.Client.Web.Models
         {
             switch (type.ToLower())
             {
-                case "infusion":
+                case "volumetric":
                     return "~/Content/Image/drop-white.png";
-                case "injection":
+                case "syringe":
                     return "~/Content/Image/injection-white.png";
                 default:
                     return "~/Content/Image/drop-whit.png";

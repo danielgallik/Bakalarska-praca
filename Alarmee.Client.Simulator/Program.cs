@@ -12,7 +12,8 @@ namespace Alarmee.Client.Simulator
         private static string DefaultIpAddress = Properties.Settings.Default.DefaultIpAddress;
 
         static void Main(string[] args)
-        {			
+        {
+            Console.Title = "Alarmee Simulator";
 			writeHelp();
 
 			string commandLine = string.Empty;
@@ -151,7 +152,9 @@ namespace Alarmee.Client.Simulator
                     var adminClient = new AdminPumpDataAccessClient();
                     if (!adminClient.SetInfusionParams(ActivePump, Convert.ToInt32(tokens[1]), Convert.ToInt32(tokens[2]), medicament.Trim()))
                     {
-                        Console.WriteLine("Cannot set pump");
+                        Console.WriteLine("Cannot set pump.");
+                        Console.WriteLine("Volumetric params: 0.1 <= rate <= 1200, 0.1 <= volume <= 1000");
+                        Console.WriteLine("Syringe params:    0.1 <= rate <= 1000, 0.1 <= volume <= 50");
                     }
                     else
                     {
@@ -242,7 +245,7 @@ namespace Alarmee.Client.Simulator
         private static void writeHelp()
         {
             Console.WriteLine("Available commands:");
-            Console.WriteLine("   add <serial_number> {infusion,injection}");
+            Console.WriteLine("   add <serial_number> {volumetric,syringe}");
             Console.WriteLine("   list");
             Console.WriteLine("   select <serial_number>");
             if (ActivePump != "")
@@ -253,7 +256,7 @@ namespace Alarmee.Client.Simulator
                 Console.WriteLine("   start");
                 Console.WriteLine("   stop");
                 Console.WriteLine("   accept");
-                Console.WriteLine("   connect");
+                Console.WriteLine("   connect <ip_address>");
                 Console.WriteLine("   info");
             }
             Console.WriteLine("   exit");

@@ -15,8 +15,6 @@ D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\bin\Debug\Alarmee.Engi
 D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\obj\Debug\Alarmee.Manager.Monitoring.csprojResolveAssemblyReference.cache
 D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\obj\Debug\Alarmee.Manager.Monitoring.exe
 D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\obj\Debug\Alarmee.Manager.Monitoring.pdb
-D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\bin\Debug\Properties\Settings.Designer.cs
-D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\bin\Debug\Properties\Settings.settings
 D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\bin\Debug\app.config
 D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\bin\Debug\Alarmee.Contracts.Manager.Monitoring.dll
 D:\Dropbox\C#\Bakalarska praca\Alarmee.Manager.Monitoring\bin\Debug\Alarmee.Contracts.Manager.Monitoring.pdb

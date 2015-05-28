@@ -18,7 +18,7 @@ namespace Alarmee.Client.Web.Controllers
 
             try
             {
-                var client = new WardManagerClient();
+                var client = new MonitoringManagerClient();
                 wardPlan = client.GetWardPlans();
                 client.Close();
             }
@@ -46,7 +46,7 @@ namespace Alarmee.Client.Web.Controllers
             PlanDetailModel model = new PlanDetailModel();
             try
             {
-                var client = new WardManagerClient();
+                var client = new MonitoringManagerClient();
                 var wardState = client.GetWardState(id);
                 client.Close();
 

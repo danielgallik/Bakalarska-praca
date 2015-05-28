@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Alarmee.Contracts.Manager.Monitoring;
-using Alarmee.Contracts.DataAccess.Plans;
+using Manager = Alarmee.Contracts.Manager.Monitoring;
+using Plans = Alarmee.Contracts.DataAccess.Plans;
 using Alarmee.Contracts.DataAccess.Pumps;
 
 namespace Alarmee.Engine.Evaluation
@@ -16,36 +16,36 @@ namespace Alarmee.Engine.Evaluation
         private static string statePreAlarm = "PreAlarm";
         private static string stateAlarm = "Alarm";
 
-        public WardStateInfo GetWardStateInfoWithError(string id)
+        public Manager.MonitoringInfo GetWardStateInfoWithError(string id)
         {
-            WardStateInfo wardStateInfo = new WardStateInfo();
-            wardStateInfo.Id = id;
-            wardStateInfo.Name = "NaN";
-            wardStateInfo.SuccessLoad = false;
-            wardStateInfo.ErrorMessage = "Cannot load plan. <br /><br /> Please contact your IT administrator.";
+            Manager.MonitoringInfo monitoringInfo = new Manager.MonitoringInfo();
+            monitoringInfo.Id = id;
+            monitoringInfo.Name = "NaN";
+            monitoringInfo.SuccessLoad = false;
+            monitoringInfo.ErrorMessage = "Cannot load plan. <br /><br /> Please contact your IT administrator.";
 
-            return wardStateInfo;
+            return monitoringInfo;
         }
 
-        public WardStateInfo GetWardStateInfo(Plan plan, Dictionary<string, List<PumpDto>> pumpDictionary)
-        {            
-            WardStateInfo wardStateInfo = new WardStateInfo();
-            wardStateInfo.Id = plan.Id;
-            wardStateInfo.Name = plan.Name;
-            wardStateInfo.SuccessLoad = true;
-            wardStateInfo.ErrorMessage = "";
-            Dictionary<int, List<WardStateInfo.Pump>> dicPump = new Dictionary<int, List<WardStateInfo.Pump>>();
+        public Manager.MonitoringInfo GetWardStateInfo(Plans.Plan plan, Dictionary<string, List<PumpDto>> pumpDictionary)
+        {
+            Manager.MonitoringInfo monitoringInfo = new Manager.MonitoringInfo();
+            monitoringInfo.Id = plan.Id;
+            monitoringInfo.Name = plan.Name;
+            monitoringInfo.SuccessLoad = true;
+            monitoringInfo.ErrorMessage = "";
+            Dictionary<int, List<Manager.Pump>> dicPump = new Dictionary<int, List<Manager.Pump>>();
 
-            foreach (Plan.Room room in plan.Rooms)
+            foreach (Plans.Room room in plan.Rooms)
             {
-                WardStateInfo.Room roomInfo = new WardStateInfo.Room();
+                Manager.Room roomInfo = new Manager.Room();
                 roomInfo.Name = room.Name;
-                roomInfo.NamePosition = new WardStateInfo.Point()
+                roomInfo.NamePosition = new Manager.Vertex()
                 {
                     X = room.NamePosition.X,
                     Y = room.NamePosition.Y
                 };
-                room.Vertices.ForEach(v => roomInfo.Vertices.Add(new WardStateInfo.Point()
+                room.Vertices.ForEach(v => roomInfo.Vertices.Add(new Manager.Vertex()
                 {
                     X = v.X,
                     Y = v.Y
@@ -59,16 +59,16 @@ namespace Alarmee.Engine.Evaluation
                     roomInfo.State = stateNotConfigured;
                 }
 
-                foreach (Plan.Bed bed in room.Beds)
+                foreach (Plans.Bed bed in room.Beds)
                 {
-                    WardStateInfo.Bed bedInfo = new WardStateInfo.Bed();
+                    Manager.Bed bedInfo = new Manager.Bed();
                     bedInfo.Name = bed.Name;
-                    bedInfo.NamePosition = new WardStateInfo.Point()
+                    bedInfo.NamePosition = new Manager.Vertex()
                     {
                         X = bed.NamePosition.X,
                         Y = bed.NamePosition.Y
                     };
-                    bed.Vertices.ForEach(v => bedInfo.Vertices.Add(new WardStateInfo.Point()
+                    bed.Vertices.ForEach(v => bedInfo.Vertices.Add(new Manager.Vertex()
                     {
                         X = v.X,
                         Y = v.Y
@@ -92,9 +92,9 @@ namespace Alarmee.Engine.Evaluation
                                 {
                                     if (!dicPump.ContainsKey(pump.RemainingTime))
                                     {
-                                        dicPump.Add(pump.RemainingTime, new List<WardStateInfo.Pump>());
+                                        dicPump.Add(pump.RemainingTime, new List<Manager.Pump>());
                                     }
-                                    dicPump[pump.RemainingTime].Add(new WardStateInfo.Pump()
+                                    dicPump[pump.RemainingTime].Add(new Manager.Pump()
                                     {
                                         Bed = bed.Name,
                                         Medicament = pump.Medicament,
@@ -116,9 +116,9 @@ namespace Alarmee.Engine.Evaluation
                                 {
                                     if (!dicPump.ContainsKey(pump.RemainingTime))
                                     {
-                                        dicPump.Add(pump.RemainingTime, new List<WardStateInfo.Pump>());
+                                        dicPump.Add(pump.RemainingTime, new List<Manager.Pump>());
                                     }
-                                    dicPump[pump.RemainingTime].Add(new WardStateInfo.Pump()
+                                    dicPump[pump.RemainingTime].Add(new Manager.Pump()
                                     {
                                         Bed = bed.Name,
                                         Medicament = pump.Medicament,
@@ -127,7 +127,7 @@ namespace Alarmee.Engine.Evaluation
                                         RemainingTime = FormatRemainingTime(pump),
                                         State = pump.CurrentState
                                     });
-                                    wardStateInfo.Alerts.Add(new WardStateInfo.Alert()
+                                    monitoringInfo.Alerts.Add(new Manager.Alert()
                                     {
                                         Bed = bed.Name,
                                         Message = pump.AlertMessage,
@@ -146,7 +146,7 @@ namespace Alarmee.Engine.Evaluation
                                 }
                                 else if (pump.CurrentState == stateAlarm)
                                 {
-                                    wardStateInfo.Alerts.Insert(0, new WardStateInfo.Alert()
+                                    monitoringInfo.Alerts.Insert(0, new Manager.Alert()
                                     {
                                         Bed = bed.Name,
                                         Message = pump.AlertMessage,
@@ -160,28 +160,32 @@ namespace Alarmee.Engine.Evaluation
                             }
                         }
                     }
-                    wardStateInfo.Beds.Add(bedInfo);
+                    monitoringInfo.Beds.Add(bedInfo);
                 }
-                wardStateInfo.Rooms.Add(roomInfo);
+                monitoringInfo.Rooms.Add(roomInfo);
             }
-            wardStateInfo.Pumps = dicPump.OrderBy(p => p.Key).SelectMany(p => p.Value).ToList();
-            return wardStateInfo;
+            monitoringInfo.Pumps = dicPump.OrderBy(p => p.Key).SelectMany(p => p.Value).ToList();
+            return monitoringInfo;
         }
 
         private double CalculateRemainingTimeProgress(PumpDto pump)
         {
-            return ((double)pump.RemainingTime * 100 / pump.TotalTime);
+            return Math.Round(((double)pump.RemainingTime * 100 / pump.TotalTime),1);
         }
 
 		private string FormatRemainingTime(PumpDto pump)
         {
-            if (pump.RemainingTime >= 3600)
+            if (pump.RemainingTime >= (60 * 60 * 24))
             {
-                return string.Format("{0} hour", Math.Round((double)pump.RemainingTime / 3600, 2));
+                return string.Format("{0} day", pump.RemainingTime / (60 * 60 * 24));
+            }
+            if (pump.RemainingTime >= (60 * 60))
+            {
+                return string.Format("{0} hour", pump.RemainingTime / (60 * 60));
             }
             if (pump.RemainingTime >= 60)
             {
-                return string.Format("{0} min", Math.Round((double)pump.RemainingTime / 60, 2));
+                return string.Format("{0} min", pump.RemainingTime / 60);
             }
 			return string.Format("{0} sec", pump.RemainingTime);
 		}

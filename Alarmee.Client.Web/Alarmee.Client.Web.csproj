@@ -116,9 +116,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlertListItem.cs" />
+    <Compile Include="Models\CanvasBed.cs" />
+    <Compile Include="Models\CanvasRoom.cs" />
     <Compile Include="Models\ColorConverter.cs" />
     <Compile Include="Models\ImageConverter.cs" />
     <Compile Include="Models\PlanDetailModel.cs" />
+    <Compile Include="Models\PumpListItem.cs" />
+    <Compile Include="Models\Vertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

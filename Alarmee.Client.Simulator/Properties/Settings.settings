@@ -5,5 +5,8 @@
     <Setting Name="DefaultIpAddress" Type="System.String" Scope="Application">
       <Value Profile="(Default)">192.168.1.1</Value>
     </Setting>
+    <Setting Name="PrealarmStartTime" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">600</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

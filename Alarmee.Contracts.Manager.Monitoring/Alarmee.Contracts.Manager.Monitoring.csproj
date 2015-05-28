@@ -41,10 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IWardManager.cs" />
+    <Compile Include="Alert.cs" />
+    <Compile Include="Bed.cs" />
+    <Compile Include="IMonitoringManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WardManagerClient.cs" />
-    <Compile Include="WardStateInfo.cs" />
+    <Compile Include="Pump.cs" />
+    <Compile Include="Room.cs" />
+    <Compile Include="Vertex.cs" />
+    <Compile Include="MonitoringManagerClient.cs" />
+    <Compile Include="MonitoringInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,7 +7,7 @@ using System.ServiceModel;
 
 namespace Alarmee.Manager.Monitoring
 {
-	public class WardManager : IWardManager
+	public class MonitoringManager : IMonitoringManager
 	{
         public Dictionary<string, string> GetWardPlans()
         {
@@ -25,7 +25,7 @@ namespace Alarmee.Manager.Monitoring
             }
         }
 
-		public WardStateInfo GetWardState(string id)
+		public MonitoringInfo GetWardState(string id)
         {
             ArrayConverter arrayConverter = new ArrayConverter();
             RemainingTimesEngine remainingTimesEngine = new RemainingTimesEngine();

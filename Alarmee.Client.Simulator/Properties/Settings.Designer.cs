@@ -31,5 +31,14 @@ namespace Alarmee.Client.Simulator.Properties {
                 return ((string)(this["DefaultIpAddress"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("600")]
+        public string PrealarmStartTime {
+            get {
+                return ((string)(this["PrealarmStartTime"]));
+            }
+        }
     }
 }

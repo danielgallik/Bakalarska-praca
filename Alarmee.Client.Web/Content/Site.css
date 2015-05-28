@@ -96,6 +96,7 @@ h2{
 #pumpList{
     display:table;
     width:100%;
+    font-size: 1.1em;
 }
 
 .pumpListHead{
@@ -151,6 +152,7 @@ h2{
 
 #alertList{
     width:100%;
+    font-size: 1.1em;
 }
 
 #alertList .alert{
@@ -168,6 +170,7 @@ h2{
 #alertList .alertMessage{
     width:65%;
     display:inline-block;
+    text-transform: uppercase;
 }
 
 #alertList .alertType{

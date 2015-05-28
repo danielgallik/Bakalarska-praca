@@ -36,19 +36,19 @@ namespace Alarmee.DataAccess.Pumps
         private Dictionary<Transition, State> MyTransitions;
         private List<MyAlarm> MyAlarms;
         private State MyCurrentState { get; set; }
-        private Type MyType { get; set;}
+        private Type MyType { get; set; }
 
-        private double MyPrealarmStartTime = Convert.ToDouble(ConfigurationManager.AppSettings["PreAlarm"]);//Properties.Settings.Default.PrealarmStartTime;
+        private double MyPrealarmStartTime = Convert.ToDouble(ConfigurationManager.AppSettings["PreAlarm"]);
 
         public Pump(string serialNumber, string type = "")
         {
-            if (type.ToLower() == Type.Injection.ToString().ToLower())
+            if (type.ToLower() == Type.Syringe.ToString().ToLower())
             {
-                MyType = Type.Injection;
+                MyType = Type.Syringe;
             }
             else
             {
-                MyType = Type.Infusion;
+                MyType = Type.Volumetric;
             }
             MyPumpLock = new object();
             MySerialNumber = serialNumber;
@@ -67,8 +67,8 @@ namespace Alarmee.DataAccess.Pumps
             };
             MyAlarms = new List<MyAlarm>
             {
-                {new MyAlarm(){Used = false, ProgressPosition = 0.2, Message = "The door is open"}},
-                {new MyAlarm(){Used = false, ProgressPosition = 0.8, Message = "Pressure too high"}}
+                {new MyAlarm(){Used = false, ProgressPosition = 0.8, Message = "Pressure too high"}},
+                {new MyAlarm(){Used = false, ProgressPosition = 0.2, Message = "Door open"}}
             };
             MyCurrentState = State.Off;
             MyRate = 0;
@@ -94,19 +94,23 @@ namespace Alarmee.DataAccess.Pumps
             return MoveNext(Command.TurnOff);
         }
 
-        public bool SetInfusionParams(int rate, int volume, string medicament)
+        public bool SetInfusionParams(double rate, double volume, string medicament)
         {
             if (MyCurrentState == State.Stop)
             {
-                MyRate = rate;
-                MyTotalTime = Math.Round((double)volume / rate * 3600, 0);
-                MyTotalVolume = volume;
-                MyElapsedTime = 0;
-                MyInfusedVolume = 0;
-                MyRemainingTime = MyTotalTime;
-                MyRemainingVolume = MyTotalVolume;
-                MyMedicament = medicament;
-                return true;
+                if ((MyType == Type.Volumetric && rate >= 0.1 && rate <= 1200 && volume >= 0.1 && volume <= 1000) ||
+                    (MyType == Type.Syringe && rate >= 0.1 && rate <= 1000 && volume >= 0.1 && volume <= 50))
+                {
+                    MyRate = rate;
+                    MyTotalTime = Math.Round((double)volume / rate * 3600, 0);
+                    MyTotalVolume = volume;
+                    MyElapsedTime = 0;
+                    MyInfusedVolume = 0;
+                    MyRemainingTime = MyTotalTime;
+                    MyRemainingVolume = MyTotalVolume;
+                    MyMedicament = medicament;
+                    return true;
+                }
             }
             return false;
         }
@@ -158,12 +162,12 @@ namespace Alarmee.DataAccess.Pumps
                 if (MyCurrentState == State.Running && MyRemainingTime <= MyPrealarmStartTime)
                 {
                     MoveNext(Command.Warning);
-                    MyAlertMessage = "The infusion is near end";
+                    MyAlertMessage = "Infusion Near End";
                 }
                 if (MyRemainingTime <= 0 || MyRemainingVolume <= 0)
                 {
                     MoveNext(Command.Error);
-                    MyAlertMessage = "The infusion ended";
+                    MyAlertMessage = "Infusion complete";
                 }
 
                 switch (MyCurrentState)
@@ -207,8 +211,8 @@ namespace Alarmee.DataAccess.Pumps
 
         private enum Type
         {
-            Infusion,
-            Injection
+            Volumetric,
+            Syringe
         }
 
         private enum State

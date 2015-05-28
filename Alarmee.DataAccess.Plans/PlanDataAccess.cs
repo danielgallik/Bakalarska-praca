@@ -60,9 +60,9 @@ namespace Alarmee.DataAccess.Plans
             }
         }
 
-        private Plan.Room GetRoom(XmlNode nodeRoom)
+        private Room GetRoom(XmlNode nodeRoom)
         {
-            Plan.Room room = new Plan.Room();
+            Room room = new Room();
 
             foreach (XmlNode nodeRoomChild in nodeRoom.ChildNodes)
             {
@@ -70,10 +70,10 @@ namespace Alarmee.DataAccess.Plans
                 {
                     case "Name":
                         room.Name = nodeRoomChild.InnerText;
-                        room.NamePosition = GetPoint(nodeRoomChild);
+                        room.NamePosition = GetVertex(nodeRoomChild);
                         break;
                     case "Vertex":
-                        room.Vertices.Add(GetPoint(nodeRoomChild));
+                        room.Vertices.Add(GetVertex(nodeRoomChild));
                         break;
                     case "Bed":
 
@@ -84,31 +84,31 @@ namespace Alarmee.DataAccess.Plans
             return room;
         }
 
-        private Plan.Bed GetBed(XmlNode nodeBed)
+        private Bed GetBed(XmlNode nodeBed)
         {
-            Plan.Bed bed = new Plan.Bed();
+            Bed bed = new Bed();
             foreach (XmlNode nodeBedChild in nodeBed.ChildNodes)
             {
                 switch (nodeBedChild.Name)
                 {
                     case "Name":
                         bed.Name = nodeBedChild.InnerText;
-                        bed.NamePosition = GetPoint(nodeBedChild);
+                        bed.NamePosition = GetVertex(nodeBedChild);
                         break;
                     case "IpAddress":
                         bed.IpAddresses.Add(nodeBedChild.InnerText);
                         break;
                     case "Vertex":
-                        bed.Vertices.Add(GetPoint(nodeBedChild));
+                        bed.Vertices.Add(GetVertex(nodeBedChild));
                         break;
                 }
             }
             return bed;
         }
 
-        private Plan.Point GetPoint(XmlNode nodePoint)
+        private Vertex GetVertex(XmlNode nodePoint)
         {
-            return new Plan.Point() 
+            return new Vertex() 
             {
                 X = Convert.ToInt32(nodePoint.Attributes["X"].Value),
                 Y = Convert.ToInt32(nodePoint.Attributes["Y"].Value)

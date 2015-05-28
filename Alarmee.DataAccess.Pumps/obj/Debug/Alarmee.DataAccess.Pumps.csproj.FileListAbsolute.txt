@@ -6,6 +6,4 @@ D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Pumps\bin\Debug\Alarmee.Contra
 D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Pumps\obj\Debug\Alarmee.DataAccess.Pumps.csprojResolveAssemblyReference.cache
 D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Pumps\obj\Debug\Alarmee.DataAccess.Pumps.dll
 D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Pumps\obj\Debug\Alarmee.DataAccess.Pumps.pdb
-D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Pumps\bin\Debug\Properties\Settings.Designer.cs
-D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Pumps\bin\Debug\Properties\Settings.settings
 D:\Dropbox\C#\Bakalarska praca\Alarmee.DataAccess.Pumps\bin\Debug\app.config

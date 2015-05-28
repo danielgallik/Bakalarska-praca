@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Alarmee.Contracts.Manager.Monitoring
 {
-	public class WardManagerClient : ClientBase<IWardManager>, IWardManager
+	public class MonitoringManagerClient : ClientBase<IMonitoringManager>, IMonitoringManager
     {
         public Dictionary<string, string> GetWardPlans()
         {
             return Channel.GetWardPlans();
         }
 
-        public WardStateInfo GetWardState(string id)
+        public MonitoringInfo GetWardState(string id)
         {
             return Channel.GetWardState(id);
         }

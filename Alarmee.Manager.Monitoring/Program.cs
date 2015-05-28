@@ -10,7 +10,8 @@ namespace Alarmee.Manager.Monitoring
     {
         static void Main(string[] args)
         {
-            var serviceWardManagerHost = new ServiceHost(typeof(WardManager));
+            Console.Title = "Alarmee Manager Monitoring";
+            var serviceWardManagerHost = new ServiceHost(typeof(MonitoringManager));
             serviceWardManagerHost.Open();
             var servicePlanDataAccessHost = new ServiceHost(typeof(PlanDataAccess));
             servicePlanDataAccessHost.Open();
